@@ -6,6 +6,7 @@ const companyCard = (props)=>
     return (
         <div className={classes.Card}>
                 CompanyCard
+                Companies?
         </div>
     )
 }
