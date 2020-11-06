@@ -1,4 +1,4 @@
-.Card
+/*.Card
 {
   background-color: rgb(226, 240, 232);
   width:600px;
@@ -11,6 +11,20 @@
   padding: 10px;
   box-sizing: border-box;
   grid-template-columns: repeat(auto-fit,minmax(100px,1fr));
+  
 
   
+}*/
+
+.Card
+{
+  background-color: rgb(226, 240, 232);
+  width:600px;
+  height:150px;
+  border: 1px solid white;
+  border-radius: 25px;
+  margin:auto;
+  display: flex;
+  justify-content: space-evenly;
+
 }
