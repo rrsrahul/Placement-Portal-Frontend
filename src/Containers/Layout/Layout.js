@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Toolbar from '../../Components/Navigation/ToolBar/ToolBar';
+import classes from './Layout.module.css'
 
 class Layout extends Component{
 
@@ -6,7 +8,8 @@ class Layout extends Component{
     {
         return (
             <React.Fragment>
-        
+                <Toolbar/>
+                <main className={classes.Content}> {this.props.children}</main>
              </React.Fragment>
         )
 

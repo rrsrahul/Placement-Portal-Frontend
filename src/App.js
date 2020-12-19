@@ -1,5 +1,6 @@
 import './App.css';
 import CompanyList from './Components/CompanyList/CompanyList';
+import Layout from './Containers/Layout/Layout';
 
 function App() {
 
@@ -10,7 +11,9 @@ function App() {
   }]
   return (
     <div className='App'>
-      <CompanyList companies={companies}/>
+      <Layout>
+        <CompanyList companies={companies}/>
+      </Layout>
     </div>
   );
 }
