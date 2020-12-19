@@ -5,9 +5,9 @@ const companyCard = (props)=>
 {
     return (
         <div className={classes.Card}>
-                <p>Name Company</p>
-                <p> Logo </p>
-                <p> CTC </p>
+                <p>{props.name}</p>
+                <p> CTC:{ props.ctc}</p>
+                <p>Date:{props.date}</p>
         </div>
     )
 }
