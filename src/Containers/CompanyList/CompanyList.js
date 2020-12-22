@@ -28,13 +28,22 @@ class CompanyList extends Component
                 })
     }
     
+    onApplyHandler = (index)=>
+    {
+       
+        console.log('Applied to '+ this.state.companies[index].name + ' ')
+    }
+
     render()
     {
-        let companies = this.state.companies.map( company =>{
-            return (<CompanyCard key = {company.name}
+        let companies = this.state.companies.map( (company,index) =>{
+            let date = new Date(company.date).toLocaleDateString('en-US');
+            let key = company.name + company.date;
+            return (<CompanyCard key = {key}
                     name={company.name}
-                    date={company.date}
-                    ctc={company.ctc}
+                    date={date}
+                    ctc={company.package}
+                    clicked = {()=>{ this.onApplyHandler(index)}}
             />)
         })
         
