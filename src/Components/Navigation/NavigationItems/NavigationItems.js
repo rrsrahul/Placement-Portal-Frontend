@@ -11,7 +11,7 @@ const navigationItems = (props)=>
            <NavigationItem link="/" >
                Schedule
            </NavigationItem>
-          <NavigationItem link="/a">
+          <NavigationItem link="/auth">
               User Data 
            </NavigationItem>
            

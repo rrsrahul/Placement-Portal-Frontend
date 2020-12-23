@@ -9,7 +9,7 @@
 
 .NavigationItem a
 {
-    color:#8F5c2c;
+    color:#108499;
     text-decoration: none;
     width: 100%;
     display: block;
@@ -53,7 +53,7 @@
 .NavigationItem a:active,
 .NavigationItem a.active
 {
-    background-color: #8F5c2c;
+    background-color: #1a94b9;
     border-bottom: 4px solid #40a4c8;
     color:white
 }
