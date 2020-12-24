@@ -49,6 +49,7 @@ class CompanyList extends Component
         
         return (
             <div>
+                Company List
                 {companies}
             </div>
         )

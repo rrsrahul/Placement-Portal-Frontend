@@ -37,9 +37,24 @@ class Auth extends Component {
                 },
                 valid:false,
                 touched:false
-            }
-        },
-        isSignUp: true
+            },
+        confirmPassword:{
+            elementType:'input',
+            elementConfig:{
+                type:'password',
+                placeholder:'Confrim Password'
+            },
+            value:'',
+            validation:
+            {
+                required:true,
+                minLength:7
+            },
+            valid:false,
+            touched:false
+        }
+    },
+        Login: true
     }
 
     inputChangedHandler = (event,controlName) =>
@@ -65,6 +80,13 @@ class Auth extends Component {
         console.log('Form Submitted')
     }
 
+    switchLoginHandler = ()=>
+    {
+        this.setState(prevState=>{
+            return ({Login:!prevState.Login})
+        })
+    }
+
     render()
     {
         const formElementsArray = [];
@@ -80,6 +102,10 @@ class Auth extends Component {
 
         let form = formElementsArray.map(formElement =>
             {
+                if(formElement.id==='confirmPassword')
+                {
+                    return null
+                }
                 return (
                     <Input
                     key={formElement.id}
@@ -99,6 +125,26 @@ class Auth extends Component {
             form=<Spinner/>
         }
 
+        if(!this.state.Login)
+        {
+            form = formElementsArray.map(formElement =>
+                {
+                    
+                    return (
+                        <Input
+                        key={formElement.id}
+                        elementType={formElement.config.elementType} 
+                        elementConfig={formElement.config.elementConfig} 
+                        value={formElement.config.value}
+                        invalid = {!formElement.config.valid}
+                        shouldValidate = {formElement.config.validation}
+                        touched={formElement.config.touched}
+                        changed={ (event)=> { this.inputChangedHandler(event,formElement.id) } }
+                         />
+                         
+                    )
+                })
+        }
         let errorMessage = null;
 
         return (
@@ -108,6 +154,7 @@ class Auth extends Component {
                 {form}
                 <Button btnType='Success'> Submit</Button>
                 </form>
+                <Button btnType='Danger' clicked={this.switchLoginHandler}>{this.state.Login?'Create an Account':'Login'}</Button>
 
             </div>
         )

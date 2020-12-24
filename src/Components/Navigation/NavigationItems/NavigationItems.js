@@ -12,7 +12,7 @@ const navigationItems = (props)=>
                Schedule
            </NavigationItem>
           <NavigationItem link="/auth">
-              User Data 
+              Login
            </NavigationItem>
            
 
