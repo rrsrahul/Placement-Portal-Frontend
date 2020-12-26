@@ -3,6 +3,8 @@ import Input from '../../Components/UI/Input/Input';
 import Spinner from '../../Components/UI/Spinner/Spinner'
 import Button from '../../Components/UI/Button/Button'
 import classes from './Auth.module.css'
+import {connect} from 'react-redux';
+import * as actions from '../../store/actions/index';
 
 class Auth extends Component {
 
@@ -57,6 +59,36 @@ class Auth extends Component {
         Login: true
     }
 
+    checkValidity(value,rules)
+    {
+        if(!rules)
+        {
+            return true;
+        }
+        let isValid = true;
+        
+            if(rules.required)
+            {
+                isValid = value.trim() !=='' && isValid;
+            }
+            if(rules.minLength)
+            {
+                isValid = value.length>= rules.minLength && isValid;
+            }
+            if(rules.maxLength)
+            {
+                isValid = value.length<=rules.maxLength && isValid;
+            }
+            if(rules.isEmail)
+            {
+                const pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+                isValid = pattern.test(value) && isValid;
+            }
+      
+        return isValid
+    }
+
+
     inputChangedHandler = (event,controlName) =>
     {
         const updatedControls = {
@@ -77,6 +109,7 @@ class Auth extends Component {
     submitHandler = (event)=>
     {
         event.preventDefault();
+        this.props.onAuth(this.state.controls.email.value,this.state.controls.password.value,this.state.Login)
         console.log('Form Submitted')
     }
 
@@ -147,6 +180,11 @@ class Auth extends Component {
         }
         let errorMessage = null;
 
+        if(this.props.loading)
+        {
+            form = <Spinner/>
+        }
+
         return (
             <div className={classes.Auth}>
                 {errorMessage}
@@ -161,4 +199,19 @@ class Auth extends Component {
     }
 }
 
-export  default Auth;
+const mapStateToProps = state =>
+{
+    return {
+        loading:state.auth.loading
+
+    }
+}
+
+const mapDispatchToProps = dispatch=>
+{
+    return {
+        onAuth: (email,password,login) =>{ dispatch(actions.auth(email,password,login))}
+
+    }
+}
+export  default connect(mapStateToProps,mapDispatchToProps)(Auth);
