@@ -98,6 +98,7 @@ export const auth = (email,password,login)=>
 
 export const authCheckState = ()=>
 {
+    console.log('Trying Auto SignUp')
     return dispatch =>
     {
         const token = localStorage.getItem('token');

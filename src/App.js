@@ -5,13 +5,13 @@ import CompanyList from './Containers/CompanyList/CompanyList'
 import Auth from './Containers/Auth/Auth'
 import Layout from './Containers/Layout/Layout';
 import {Switch,Route} from 'react-router-dom';
-import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import * as actions from './store/actions/index'
 
 function App(props) {
-
+  const dispatch = useDispatch();
   useEffect(() => {
-    props.AutoSignUp();
+    dispatch(actions.authCheckState())
   });
   
   return (
@@ -27,11 +27,6 @@ function App(props) {
   );
 }
 
-const mapDispatchToProps = dispatch =>
-{
-  return {
-    AutoSignUp: dispatch(actions.authCheckState())
-  }
-}
 
-export default connect(null,mapDispatchToProps)(App);
+
+export default (App);
