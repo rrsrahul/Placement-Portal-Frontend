@@ -42,7 +42,7 @@ class CompanyList extends Component
             return (<CompanyCard key = {key}
                     name={company.name}
                     date={date}
-                    ctc={company.package}
+                    ctc={company.ctc}
                     clicked = {()=>{ this.onApplyHandler(index)}}
             />)
         })

@@ -10,6 +10,7 @@ import * as actions from './store/actions/index'
 import CompanyData from './Containers/Auth/CompanyData/CompanyData';
 import UserData from './Containers/Auth/UserData/UserData';
 
+
 function App(props) {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -27,6 +28,8 @@ function App(props) {
           <Route path='/' exact component={CompanyList}/>
 
         </Switch>
+       
+
       </Layout>
     </div>
   );

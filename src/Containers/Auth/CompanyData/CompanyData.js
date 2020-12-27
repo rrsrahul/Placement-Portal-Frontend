@@ -68,6 +68,20 @@ class CompanyData extends Component {
                 valid:false,
                 touched:false
             },
+            date:{
+                elementType:'input',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'Date of Placement Test'
+                },
+                value:'',
+                validation:
+                {
+                    required:true,
+                },
+                valid:false,
+                touched:false
+            },
             jobLocation:{
                 elementType:'input',
                 elementConfig:{

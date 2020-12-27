@@ -3,6 +3,7 @@ import Input from '../../../Components/UI/Input/Input';
 //import Spinner from '../../../Components/UI/Spinner/Spinner'
 import Button from '../../../Components/UI/Button/Button'
 import classes from './UserData.module.css'
+import UserAvatar from '../../../Components/UI/Avatar/UserAvatar';
 //import {connect} from 'react-redux';
 //import * as actions from '../../../store/actions/index';
 
@@ -119,6 +120,20 @@ class UserData extends Component {
                 value:'Male',
                 valid:true
             },
+           semester:{
+                elementType:'input',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'Semester'
+                },
+                value:'',
+                validation:
+                {
+                    required:true,
+                },
+                valid:false,
+                touched:false
+            },
             cgpa:{
                 elementType:'input',
                 elementConfig:{
@@ -188,7 +203,8 @@ class UserData extends Component {
                 },
                 valid:false,
                 touched:false
-            }
+            },
+            
 
             
 
@@ -295,6 +311,9 @@ class UserData extends Component {
         return (
             <div className={classes.Auth}>
                 <form onSubmit={(event)=>{this.submitHandler(event)}}>
+                   <div style={{display: "flex", justifyContent:"center",alignItems:"center"}}> 
+                    <UserAvatar  size="84" name="Rahul R S"/> 
+                   </div>
                 {form}
                 <Button btnType='Success' disabled={!this.state.formIsValid} > Submit</Button>
                 </form>
