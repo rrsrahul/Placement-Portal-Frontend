@@ -14,7 +14,12 @@ const navigationItems = (props)=>
           <NavigationItem link="/auth">
               Login
            </NavigationItem>
-           
+           <NavigationItem link="/company">
+              Add Company
+           </NavigationItem>
+           <NavigationItem link="/user">
+              Add User
+           </NavigationItem>
 
         </ul>
     )

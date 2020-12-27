@@ -7,6 +7,8 @@ import Layout from './Containers/Layout/Layout';
 import {Switch,Route} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import * as actions from './store/actions/index'
+import CompanyData from './Containers/Auth/CompanyData/CompanyData';
+import UserData from './Containers/Auth/UserData/UserData';
 
 function App(props) {
   const dispatch = useDispatch();
@@ -20,7 +22,10 @@ function App(props) {
         <Switch>
           <Route path='/auth' component={Auth}/>
           <Route path='/companies' component={CompanyList}/>
+          <Route path='/company' component={CompanyData}/>
+          <Route path='/user' component={UserData}/>
           <Route path='/' exact component={CompanyList}/>
+
         </Switch>
       </Layout>
     </div>
