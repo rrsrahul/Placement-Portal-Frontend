@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Input from '../../../Components/UI/Input/Input';
-import Spinner from '../../../Components/UI/Spinner/Spinner'
+//import Spinner from '../../../Components/UI/Spinner/Spinner'
 import Button from '../../../Components/UI/Button/Button'
 import classes from './CompanyData.module.css'
 //import {connect} from 'react-redux';
@@ -156,8 +156,17 @@ class CompanyData extends Component {
             }
         }
 
+        let formIsValid = true;
+
+        for(let inputIdentifiers in updatedControls)
+        {
+            formIsValid = updatedControls[inputIdentifiers].valid && formIsValid;
+        }
+
+
         this.setState({
-            controls:updatedControls
+            controls:updatedControls,
+            formIsValid:formIsValid
         })
     }
 
@@ -203,7 +212,7 @@ class CompanyData extends Component {
             <div className={classes.Auth}>
                 <form onSubmit={(event)=>{this.submitHandler(event)}}>
                 {form}
-                <Button btnType='Success'> Submit</Button>
+                <Button btnType='Success' disabled={!this.state.formIsValid} > Submit</Button>
                 </form>
 
             </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Input from '../../../Components/UI/Input/Input';
-import Spinner from '../../../Components/UI/Spinner/Spinner'
+//import Spinner from '../../../Components/UI/Spinner/Spinner'
 import Button from '../../../Components/UI/Button/Button'
 import classes from './UserData.module.css'
 //import {connect} from 'react-redux';
@@ -21,29 +21,182 @@ class UserData extends Component {
                 validation:
                 {
                     required:true,
-                    isEmail:true
                 },
                 valid:false,
                 touched:false
             },
-            password:{
+            usn:{
                 elementType:'input',
                 elementConfig:{
-                    type:'password',
-                    placeholder:'Password'
+                    type:'text',
+                    placeholder:'USN'
                 },
                 value:'',
                 validation:
                 {
                     required:true,
-                    minLength:7
                 },
                 valid:false,
                 touched:false
             },
-    },
+           gender:{
+                elementType:'select',
+                elementConfig:{
+                    options:[
+                        {value:'male',displayValue:'Male'},
+                        {value:'female',displayValue:'Female'},
+                        {value:'notDisclosed',displayValue:'Prefer Not To Say'}
+                    ]
+                },
+                value:'Male',
+                valid:true
+            },
+            dob:{
+                elementType:'input',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'Date of Birth'
+                },
+                value:'',
+                validation:
+                {
+                    required:true,
+                },
+                valid:false,
+                touched:false
+            },
+            tenthMarks:{
+                elementType:'input',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'Tenth Percentage'
+                },
+                value:'',
+                validation:
+                {
+                    required:true,
+                },
+                valid:false,
+                touched:false
+            },
+            twelfthMarks:{
+                elementType:'input',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'12th Percentage'
+                },
+                value:'',
+                validation:
+                {
+                    required:true,
+                },
+                valid:false,
+                touched:false
+            },
+            diplomaPercentage:{
+                elementType:'input',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'Diploma Percentage(none if 12th)'
+                },
+                value:'',
+                validation:
+                {
+                    required:true,
+                },
+                valid:false,
+                touched:false
+            },
+            branch:{
+                elementType:'select',
+                elementConfig:{
+                    options:[
+                        {value:'ISE',displayValue:'Information Science'},
+                        {value:'CSE',displayValue:'Computer Science'},
+                        {value:'EEE',displayValue:'Electrical and Electronics'}
+                    ]
+                },
+                value:'Male',
+                valid:true
+            },
+            cgpa:{
+                elementType:'input',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'B.E cgpa'
+                },
+                value:'',
+                validation:
+                {
+                    required:true,
+                },
+                valid:false,
+                touched:false
+            },
+           backlogs:{
+                elementType:'input',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'Number of Active Backlogs'
+                },
+                value:'',
+                validation:
+                {
+                    required:true,
+                },
+                valid:false,
+                touched:false
+            },
+           backlogsCleared:{
+                elementType:'input',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'Number of Backlogs Cleared'
+                },
+                value:'',
+                validation:
+                {
+                    required:true,
+                },
+                valid:false,
+                touched:false
+            },
+            address:{
+                elementType:'textarea',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'Permanent Address'
+                },
+                value:'',
+                validation:
+                {
+                    required:true,
+                },
+                valid:false,
+                touched:false
+            },
+           phoneNo:{
+                elementType:'input',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'Phone Number'
+                },
+                value:'',
+                validation:
+                {
+                    required:true,
+                },
+                valid:false,
+                touched:false
+            }
+
+            
+
+        },
+               formIsValid:false
+            }
        
-    }
+   
 
     checkValidity(value,rules)
     {
@@ -87,8 +240,17 @@ class UserData extends Component {
             }
         }
 
+        let formIsValid = true;
+
+        for(let inputIdentifiers in updatedControls)
+        {
+            formIsValid = updatedControls[inputIdentifiers].valid && formIsValid;
+        }
+
+
         this.setState({
-            controls:updatedControls
+            controls:updatedControls,
+            formIsValid:formIsValid
         })
     }
 
@@ -97,13 +259,6 @@ class UserData extends Component {
         event.preventDefault();
         this.props.onAuth(this.state.controls.email.value,this.state.controls.password.value,this.state.Login)
         console.log('Form Submitted')
-    }
-
-    switchLoginHandler = ()=>
-    {
-        this.setState(prevState=>{
-            return ({Login:!prevState.Login})
-        })
     }
 
     render()
@@ -121,10 +276,7 @@ class UserData extends Component {
 
         let form = formElementsArray.map(formElement =>
             {
-                if(formElement.id==='confirmPassword')
-                {
-                    return null
-                }
+                
                 return (
                     <Input
                     key={formElement.id}
@@ -139,46 +291,13 @@ class UserData extends Component {
                      
                 )
             })
-        if(this.props.loading)
-        {
-            form=<Spinner/>
-        }
-
-        if(!this.state.Login)
-        {
-            form = formElementsArray.map(formElement =>
-                {
-                    
-                    return (
-                        <Input
-                        key={formElement.id}
-                        elementType={formElement.config.elementType} 
-                        elementConfig={formElement.config.elementConfig} 
-                        value={formElement.config.value}
-                        invalid = {!formElement.config.valid}
-                        shouldValidate = {formElement.config.validation}
-                        touched={formElement.config.touched}
-                        changed={ (event)=> { this.inputChangedHandler(event,formElement.id) } }
-                         />
-                         
-                    )
-                })
-        }
-        let errorMessage = null;
-
-        if(this.props.loading)
-        {
-            form = <Spinner/>
-        }
 
         return (
             <div className={classes.Auth}>
-                {errorMessage}
                 <form onSubmit={(event)=>{this.submitHandler(event)}}>
                 {form}
-                <Button btnType='Success'> Submit</Button>
+                <Button btnType='Success' disabled={!this.state.formIsValid} > Submit</Button>
                 </form>
-                <Button btnType='Danger' clicked={this.switchLoginHandler}>{this.state.Login?'Create an Account':'Login'}</Button>
 
             </div>
         )
@@ -200,5 +319,4 @@ const mapDispatchToProps = dispatch=>
 
     }
 }*/
-
-export  default UserData
+export  default UserData;
