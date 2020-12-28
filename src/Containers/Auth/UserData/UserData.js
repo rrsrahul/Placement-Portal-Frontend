@@ -4,6 +4,8 @@ import Input from '../../../Components/UI/Input/Input';
 import Button from '../../../Components/UI/Button/Button'
 import classes from './UserData.module.css'
 import UserAvatar from '../../../Components/UI/Avatar/UserAvatar';
+import axios from 'axios';
+import {connect} from 'react-redux'
 //import {connect} from 'react-redux';
 //import * as actions from '../../../store/actions/index';
 
@@ -209,7 +211,8 @@ class UserData extends Component {
             
 
         },
-               formIsValid:false
+               formIsValid:false,
+               error:null
             }
        
    
@@ -273,7 +276,45 @@ class UserData extends Component {
     submitHandler = (event)=>
     {
         event.preventDefault();
-        this.props.onAuth(this.state.controls.email.value,this.state.controls.password.value,this.state.Login)
+
+        const userData = {
+            name:this.state.controls.name.value,
+              cgpa:this.state.controls.cgpa.value,
+              branch:this.state.controls.branch.value,
+              address:this.state.controls.address.value,
+              phone:this.state.controls.phoneNo.value,
+              tenthMarks:this.state.controls.tenthMarks.value,
+              twelfthMarks:this.state.controls.twelfthMarks.value,
+              dob:this.state.controls.dob.value,
+              gender:this.state.controls.gender.value,
+              diplomaPercentage:this.state.controls.diplomaPercentage.value,
+              semester:this.state.controls.semester.value
+
+        }
+
+        axios.post('http://localhost:8080/students/'+this.props.userId,userData)
+        .then( res =>
+        {
+           console.log(res.data);
+            this.props.history.replace('/')
+
+        })
+        .catch(err =>{
+            console.log(err)
+        })
+
+         /*axios.get('http://localhost:8080/students//'+this.props.userId)
+        .then( res =>
+        {
+           console.log(res.data);
+           // this.props.history.replace('/')
+
+        })
+        .catch(err =>{
+            console.log(err)
+        })*/
+
+        
         console.log('Form Submitted')
     }
 
@@ -323,19 +364,19 @@ class UserData extends Component {
     }
 }
 
-/*const mapStateToProps = state =>
+const mapStateToProps = state =>
 {
     return {
-        loading:state.auth.loading
+        userId:state.auth.userId
 
     }
 }
 
-const mapDispatchToProps = dispatch=>
+/*const mapDispatchToProps = dispatch=>
 {
     return {
         onAuth: (email,password,login) =>{ dispatch(actions.auth(email,password,login))}
 
     }
 }*/
-export  default UserData;
+export  default connect(mapStateToProps)(UserData);

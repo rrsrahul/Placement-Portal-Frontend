@@ -3,6 +3,7 @@ import Input from '../../../Components/UI/Input/Input';
 //import Spinner from '../../../Components/UI/Spinner/Spinner'
 import Button from '../../../Components/UI/Button/Button'
 import classes from './CompanyData.module.css'
+import  axios  from "axios";
 //import {connect} from 'react-redux';
 //import * as actions from '../../../store/actions/index';
 
@@ -187,7 +188,28 @@ class CompanyData extends Component {
     submitHandler = (event)=>
     {
         event.preventDefault();
-        this.props.onAuth(this.state.controls.email.value,this.state.controls.password.value,this.state.Login)
+        const compData = {
+            name:this.state.controls.name.value,
+            eligibility:this.state.controls.cutoff.value,
+            ctc:this.state.controls.ctc.value,
+            date:this.state.controls.date.value,
+            jd:this.state.controls.jobDescription.value,
+            internship:this.state.controls.internship.value,
+            jobLocation:this.state.controls.jobLocation.value,
+            additionalInformation:this.state.controls.additionalInfo.value
+        }
+
+        axios.post('http://localhost:8080/companies',compData)
+        .then(res =>
+        {
+            console.log(res.data);
+            this.props.history.replace('/')
+
+        }).catch(err =>{
+            console.log(err)
+
+        })
+        
         console.log('Form Submitted')
     }
 
