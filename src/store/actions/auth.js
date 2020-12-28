@@ -31,6 +31,7 @@ export const logout = ()=>
     localStorage.removeItem('expirationDate')
     localStorage.removeItem('token')
     localStorage.removeItem('userId')
+   
     return{
         type:actionTypes.AUTH_LOGOUT
     }

@@ -19,7 +19,7 @@ class CompanyList extends Component
         axios.get('/companies')
         .then(res=>
             {
-                console.log(res.data)
+                //console.log(res.data)
                 this.setState({companies:res.data})
             } )
         .catch(err=>
