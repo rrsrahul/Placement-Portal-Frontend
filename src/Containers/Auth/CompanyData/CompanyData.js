@@ -69,6 +69,20 @@ class CompanyData extends Component {
                 valid:false,
                 touched:false
             },
+            position:{
+                elementType:'input',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'The position for hiring students'
+                },
+                value:'',
+                validation:
+                {
+                    required:false,
+                },
+                valid:false,
+                touched:false
+            },
             date:{
                 elementType:'input',
                 elementConfig:{
@@ -191,6 +205,7 @@ class CompanyData extends Component {
         const compData = {
             name:this.state.controls.name.value,
             eligibility:this.state.controls.cutoff.value,
+            position:this.state.controls.position.value,
             ctc:this.state.controls.ctc.value,
             date:this.state.controls.date.value,
             jd:this.state.controls.jobDescription.value,
