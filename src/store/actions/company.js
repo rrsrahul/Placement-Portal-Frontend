@@ -40,12 +40,12 @@ export const getCompanies = ()=>
             {
                 //console.log(res.data)
                 //this.setState({companies:res.data})
-                getCompSuccess(res.data)
+                dispatch(getCompSuccess(res.data))
             } )
         .catch(err=>
                 {
                     console.log(err)
-                    getCompFailed(err)
+                    dispatch(getCompFailed(err))
                 })
     }
 }

@@ -18,6 +18,7 @@ function App(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     console.log('use Effect')
+    dispatch(actions.getCompanies())
     dispatch(actions.authCheckState())
   });
   

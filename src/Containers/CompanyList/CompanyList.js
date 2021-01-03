@@ -1,32 +1,11 @@
 import React, { Component } from 'react';
 import CompanyCard from '../../Components/CompanyCard/CompanyCard';
-import axiosI from 'axios';
-
-const axios = axiosI.create({
-    baseURL:'http://localhost:8080/'
-})
+import { connect } from 'react-redux'
 
 
 
 class CompanyList extends Component
 {
-    state={
-        companies:[]
-    }
-
-    componentDidMount()
-    {
-        axios.get('/companies')
-        .then(res=>
-            {
-                //console.log(res.data)
-                this.setState({companies:res.data})
-            } )
-        .catch(err=>
-                {
-                    console.log(err)
-                })
-    }
     
     onApplyHandler = (index)=>
     {
@@ -36,7 +15,7 @@ class CompanyList extends Component
 
     render()
     {
-        let companies = this.state.companies.map( (company,index) =>{
+        let companies = this.props.companies.map( (company,index) =>{
             let date = new Date(company.date).toLocaleDateString('en-US');
             let key = company.name + company.date;
             return (<CompanyCard key = {key}
@@ -57,4 +36,11 @@ class CompanyList extends Component
     
 }
 
-export default CompanyList
+
+const mapStateToProps = state =>
+{
+    return {
+        companies: state.comp.companies
+    }
+}
+export default connect(mapStateToProps)(CompanyList)
