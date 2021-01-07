@@ -197,7 +197,7 @@ class Auth extends Component {
                 </form>
                 {this.state.Login && <Button btnType='Danger' className="btn btn-dark btn-lg btn-block" clicked={this.switchLoginHandler}>Create an Account</Button>}
                 {!this.state.Login && <p onClick={this.switchLoginHandler} className="forgot-password text-right">
-                    Already registered <a href="#">log in?</a>
+                    Already registered <span style={{color:'blue',cursor: 'pointer'}}>log in?</span>
                 </p>}
 
             </div>
