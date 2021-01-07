@@ -13,7 +13,7 @@ export const GET_COMPANIES_START = 'GET_COMPANIES_START'
 
 //Companies 
 
-export const ON_APLLY_START
+export const ON_APLLY_START='ON_APPLY_START'
 export const ON_APPLY_SUCCESS = 'ON_APPLY_SUCCESS'
 export const ON_APPLY_FAILED = 'ON_APPLY_FAILED'
 
