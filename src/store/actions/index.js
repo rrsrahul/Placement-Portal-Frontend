@@ -7,3 +7,8 @@ export {
 export {
 getCompanies
 } from './company'
+
+export {
+onApply
+}
+from './apply'

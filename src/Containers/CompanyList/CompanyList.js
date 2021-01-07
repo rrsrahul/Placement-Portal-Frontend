@@ -3,13 +3,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Company from '../../Components/Company/Company';
 import classes from './CompanyList.module.css'
-import axios from 'axios'
-
+import * as actions from '../../store/actions/index';
 
 
 class CompanyList extends Component
 {
-    
+
     onApplyHandler = (company)=>
     {
        
@@ -18,19 +17,7 @@ class CompanyList extends Component
             position: company.position,
             id:this.props.userId
         }
-
-        axios.post('http://localhost:8080/apply',applyData)
-        .then(res =>
-            {
-                console.log(res.data)
-            })
-            .catch(err=>
-                {
-                    console.log(err)
-                }
-                
-            )
-
+        this.props.onApply(applyData);
         
     }
 
@@ -55,6 +42,7 @@ class CompanyList extends Component
                  role={company.position}
                  date={newdate}
                  clicked={()=>{this.onApplyHandler(company)}}
+                 hasApplied={false}
                  learnMore ={(company)=>{this.onLearnMoreHandler(company)}}
                 />
             </div>)
@@ -75,6 +63,7 @@ class CompanyList extends Component
 }
 
 
+
 const mapStateToProps = state =>
 {
     return {
@@ -82,4 +71,12 @@ const mapStateToProps = state =>
         userId: state.auth.userId
     }
 }
-export default connect(mapStateToProps)(CompanyList)
+
+const mapDispatchToProps = dispatch=>
+{
+    return{
+        onApply: (data)=>{ dispatch(actions.onApply(data))}
+    } 
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(CompanyList)

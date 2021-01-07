@@ -32,7 +32,10 @@ export default function ImgMediaCard(props) {
            {props.Name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-             CTC: {props.ctc} {'\u00A0'} Role: {props.role} {'\u00A0'} Date:{props.date}
+             CTC: {props.ctc} {'\u00A0'} Role: {props.role}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+             Date:{props.date}
           </Typography>
         </CardContent>
       </CardActionArea>
