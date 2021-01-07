@@ -1,7 +1,8 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-   applied:[]
+   applied:[],
+   err:null
 
 }
 
@@ -12,7 +13,14 @@ const reducer = (state=initialState,action)=>
         case actionTypes.ON_APPLY_SUCCESS:
             return {
                 ...state,
-                applied:action.companies
+                applied:action.companies,
+                err:null
+            }
+        case actionTypes.ON_APPLY_FAILED:
+            return{
+                ...state,
+                applied:[],
+                err:action.err
             }
         default:
             return state

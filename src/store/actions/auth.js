@@ -43,7 +43,6 @@ export const auth = (email,password,login,history)=>
     return dispatch =>
     {
         dispatch(authStart());
-        console.log(password)
         const authData = {
             email:email,
             password:password,

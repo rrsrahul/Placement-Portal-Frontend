@@ -17,10 +17,11 @@ export const applySuccess = (applyData,companies)=>
     }
 }
 
-export const applyFail = ()=>
+export const applyFail = (err)=>
 {
     return {
-        type:actionTypes.ON_APPLY_FAILED
+        type:actionTypes.ON_APPLY_FAILED,
+        err:err
     }
 }
 
@@ -44,7 +45,7 @@ export const onApply = (applyData)=>
             })
             .catch(err=>
                 {
-                    dispatch(applyFail())
+                    dispatch(applyFail(err))
                     console.log(err)
                 }
                 

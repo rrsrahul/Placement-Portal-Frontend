@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import bmsLogo from '../../assets/images/bmsLogo.jpg'
 
 const useStyles = makeStyles({
   root: {
@@ -14,17 +15,29 @@ const useStyles = makeStyles({
   },
 });
 
+
+  
+
 export default function ImgMediaCard(props) {
   const classes = useStyles();
+
+  let applied = null;
+  if(props.isApplied)
+  {
+    applied = (<Button size="small" color="primary" onClick={props.clicked} >
+    Withdraw
+   </Button>)
+  }
 
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia
+      <CardMedia
           component="img"
           alt={props.Name}
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
+          max-width='100%'
+          max-height='100%'
+          image={bmsLogo}
           title="Contemplative Reptile"
         />
         <CardContent>
@@ -40,9 +53,10 @@ export default function ImgMediaCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary" onClick={props.clicked}>
+        <Button size="small" color="primary" onClick={props.clicked} disabled={props.isApplied}>
          Apply
         </Button>
+        {applied}
         <Button size="small" color="primary" onClick={props.learnMore}>
           Learn More
         </Button>

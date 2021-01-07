@@ -14,7 +14,7 @@ import appliedReducer from './store/reducers/apply';
 const rootReducer = combineReducers({
   auth:authReducer,
   comp:compReducer,
-  applied:appliedReducer
+  apply:appliedReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

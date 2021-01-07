@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Company from '../../Components/Company/Company';
 import classes from './CompanyList.module.css'
+//import Logo from '../../Components/Logo/Logo'
+
 import * as actions from '../../store/actions/index';
 
 
@@ -34,6 +36,11 @@ class CompanyList extends Component
             let day = dateObj.getUTCDate();
             let year = dateObj.getUTCFullYear();
             
+            let isApplied = this.props.applied.find(appliedComp =>
+                {
+                    return ((appliedComp.name === company.name) && (appliedComp.position === company.position))
+                })
+
             const newdate = day + "/" + month + "/" +year ;
             return (<div className={classes.comp} key={company.name + company.jd}>
                 <Company
@@ -42,7 +49,7 @@ class CompanyList extends Component
                  role={company.position}
                  date={newdate}
                  clicked={()=>{this.onApplyHandler(company)}}
-                 hasApplied={false}
+                 isApplied={isApplied}
                  learnMore ={(company)=>{this.onLearnMoreHandler(company)}}
                 />
             </div>)
@@ -68,7 +75,8 @@ const mapStateToProps = state =>
 {
     return {
         companies: state.comp.companies,
-        userId: state.auth.userId
+        userId: state.auth.userId,
+        applied: state.apply.applied
     }
 }
 
