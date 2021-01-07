@@ -24,7 +24,7 @@ export default function ImgMediaCard(props) {
   let applied = null;
   if(props.isApplied)
   {
-    applied = (<Button size="small" color="primary" onClick={props.clicked} >
+    applied = (<Button size="small" color="primary" onClick={props.isWithdraw} >
     Withdraw
    </Button>)
   }

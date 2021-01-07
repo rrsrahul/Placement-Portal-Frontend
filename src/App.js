@@ -11,17 +11,35 @@ import * as actions from './store/actions/index'
 import CompanyData from './Containers/Auth/CompanyData/CompanyData';
 import UserData from './Containers/Auth/UserData/UserData';
 import Logout from './Containers/Auth/Logout/Logout';
+import axios from 'axios';
+
 
 
 function App(props) {
 
   const token = useSelector(state => state.auth.token);
   const dispatch = useDispatch();
+  let t = useSelector(state =>state.auth.token)
+  let userId = useSelector(state =>state.auth.userId)
   useEffect(() => {
     console.log('use Effect')
     dispatch(actions.getCompanies())
     dispatch(actions.authCheckState())
-  });
+    if(t!=null)
+    {
+      axios.get('http://localhost:8080/apply/student/?userId='+userId)
+      .then(res =>
+      {
+         dispatch(actions.applyStart(res.data))
+      })
+      .catch(err=>
+      {
+        console.log(err)
+      });
+    }
+  })
+
+    
   
   /*let logout = null;
   if(token!=null)

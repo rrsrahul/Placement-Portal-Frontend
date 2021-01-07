@@ -28,6 +28,18 @@ class CompanyList extends Component
         
     }
 
+    onWithdrawHandler = (company)=>
+    {
+        console.log('WithdrawHandler')
+        console.log(company.name)
+        const applyData ={
+            compName: company.name,
+           position: company.position,
+           id:this.props.userId
+       }
+            this.props.onWithdraw(applyData)
+    }
+
     render()
     {
         let companies = this.props.companies.map( (company,index) =>{
@@ -35,11 +47,15 @@ class CompanyList extends Component
            let month = dateObj.getUTCMonth() + 1; //months from 1-12
             let day = dateObj.getUTCDate();
             let year = dateObj.getUTCFullYear();
+            let isApplied=null;
+            if(this.props.applied!==null)
+            {
+                isApplied = this.props.applied.find(appliedComp =>
+                    {
+                        return ((appliedComp.name === company.name) && (appliedComp.position === company.position))
+                    })
+            }
             
-            let isApplied = this.props.applied.find(appliedComp =>
-                {
-                    return ((appliedComp.name === company.name) && (appliedComp.position === company.position))
-                })
 
             const newdate = day + "/" + month + "/" +year ;
             return (<div className={classes.comp} key={company.name + company.jd}>
@@ -50,7 +66,8 @@ class CompanyList extends Component
                  date={newdate}
                  clicked={()=>{this.onApplyHandler(company)}}
                  isApplied={isApplied}
-                 learnMore ={(company)=>{this.onLearnMoreHandler(company)}}
+                 isWithdraw={()=>{ this.onWithdrawHandler(company) }}
+                 learnMore ={()=>{this.onLearnMoreHandler(company)}}
                 />
             </div>)
             
@@ -83,7 +100,8 @@ const mapStateToProps = state =>
 const mapDispatchToProps = dispatch=>
 {
     return{
-        onApply: (data)=>{ dispatch(actions.onApply(data))}
+        onApply: (data)=>{ dispatch(actions.onApply(data))},
+        onWithdraw: (data)=>{dispatch(actions.onWithdraw(data))}
     } 
 }
 
