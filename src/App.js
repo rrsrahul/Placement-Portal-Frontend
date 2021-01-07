@@ -1,6 +1,7 @@
 
 import './App.css';
 import {useEffect} from 'react'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import CompanyList from './Containers/CompanyList/CompanyList'
 import Auth from './Containers/Auth/Auth'
 import Layout from './Containers/Layout/Layout';
@@ -29,7 +30,7 @@ function App(props) {
   }*/
   return (
     <div className='App'>
-      <Layout isAuth={token!=null}>
+      <Layout isAuth={false}>
         <Switch>
           <Route path='/auth' component={Auth}/>
           <Route path='/companies' component={CompanyList}/>
@@ -37,7 +38,6 @@ function App(props) {
           <Route path='/user' component={UserData}/>
           <Route path='/logout' component={Logout}/>
           <Route path='/' exact component={CompanyList}/>
-
         </Switch>
       
 

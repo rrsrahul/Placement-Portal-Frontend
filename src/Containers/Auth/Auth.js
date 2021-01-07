@@ -13,7 +13,7 @@ class Auth extends Component {
                 email:{
                 elementType:'input',
                 elementConfig:{
-                    type:'email',
+                    type:'Email',
                     placeholder:'Email Address'
                 },
                 value:'',
@@ -28,7 +28,7 @@ class Auth extends Component {
             password:{
                 elementType:'input',
                 elementConfig:{
-                    type:'password',
+                    type:'Password',
                     placeholder:'Password'
                 },
                 value:'',
@@ -43,7 +43,7 @@ class Auth extends Component {
         confirmPassword:{
             elementType:'input',
             elementConfig:{
-                type:'password',
+                type:'Confrim Password',
                 placeholder:'Confrim Password'
             },
             value:'',
@@ -142,6 +142,7 @@ class Auth extends Component {
                 return (
                     <Input
                     key={formElement.id}
+                    label={formElement.config.elementConfig.type}
                     elementType={formElement.config.elementType} 
                     elementConfig={formElement.config.elementConfig} 
                     value={formElement.config.value}
@@ -166,6 +167,7 @@ class Auth extends Component {
                     return (
                         <Input
                         key={formElement.id}
+                        label={formElement.config.elementConfig.type}
                         elementType={formElement.config.elementType} 
                         elementConfig={formElement.config.elementConfig} 
                         value={formElement.config.value}
@@ -187,12 +189,16 @@ class Auth extends Component {
 
         return (
             <div className={classes.Auth}>
+                <h3>{this.state.Login?'Log in':'Sign up'}</h3>
                 {errorMessage}
                 <form onSubmit={(event)=>{this.submitHandler(event)}}>
                 {form}
-                <Button btnType='Success'> Submit</Button>
+                <Button btnType='Success' className="btn btn-dark btn-lg btn-block">{this.state.Login?'Sign in':'Sign up'}</Button>
                 </form>
-                <Button btnType='Danger' clicked={this.switchLoginHandler}>{this.state.Login?'Create an Account':'Login'}</Button>
+                {this.state.Login && <Button btnType='Danger' className="btn btn-dark btn-lg btn-block" clicked={this.switchLoginHandler}>Create an Account</Button>}
+                {!this.state.Login && <p onClick={this.switchLoginHandler} className="forgot-password text-right">
+                    Already registered <a href="#">log in?</a>
+                </p>}
 
             </div>
         )

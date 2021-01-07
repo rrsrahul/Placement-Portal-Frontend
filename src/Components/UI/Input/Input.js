@@ -49,10 +49,9 @@ const input = (props)=>
 
     }
     return (   
-        <div className={classes.Input} >
+        <div className="form-group" >
             <label className={classes.label}>{props.label}</label>
-            {inputElement}
-            
+            {inputElement}          
         </div>
     )
 }
