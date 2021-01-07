@@ -263,7 +263,7 @@ class CompanyData extends Component {
             <div className={classes.Auth}>
                 <form onSubmit={(event)=>{this.submitHandler(event)}}>
                 {form}
-                <Button btnType='Success' disabled={!this.state.formIsValid} > Submit</Button>
+                <Button btnType='Success' className="btn btn-dark btn-lg btn-block" disabled={!this.state.formIsValid} > Submit</Button>
                 </form>
 
             </div>

@@ -350,13 +350,13 @@ class UserData extends Component {
             })
 
         return (
-            <div className={classes.Auth}>
+            <div className={classes.Auth} >
                 <form onSubmit={(event)=>{this.submitHandler(event)}}>
                    <div style={{display: "flex", justifyContent:"center",alignItems:"center"}}> 
                     <UserAvatar  size="84" name="Rahul R S"/> 
                    </div>
                 {form}
-                <Button btnType='Success' disabled={!this.state.formIsValid} > Submit</Button>
+                <Button btnType='Success' className="btn btn-dark btn-lg btn-block" disabled={!this.state.formIsValid} > Submit</Button>
                 </form>
 
             </div>

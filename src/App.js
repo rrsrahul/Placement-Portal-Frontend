@@ -30,7 +30,7 @@ function App(props) {
   }*/
   return (
     <div className='App'>
-      <Layout isAuth={false}>
+      <Layout isAuth={true}>
         <Switch>
           <Route path='/auth' component={Auth}/>
           <Route path='/companies' component={CompanyList}/>
