@@ -30,7 +30,7 @@ function App(props) {
   }*/
   return (
     <div className='App'>
-      <Layout isAuth={true}>
+      <Layout isAuth={token!=null}>
         <Switch>
           <Route path='/auth' component={Auth}/>
           <Route path='/companies' component={CompanyList}/>
@@ -39,7 +39,7 @@ function App(props) {
           <Route path='/logout' component={Logout}/>
           <Route path='/' exact component={CompanyList}/>
         </Switch>
-       
+      
 
       </Layout>
     </div>

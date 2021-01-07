@@ -109,7 +109,7 @@ class Auth extends Component {
     submitHandler = (event)=>
     {
         event.preventDefault();
-        this.props.onAuth(this.state.controls.email.value,this.state.controls.password.value,this.state.Login)
+        this.props.onAuth(this.state.controls.email.value,this.state.controls.password.value,this.state.Login,this.props.history)
         console.log('Form Submitted')
     }
 
@@ -197,7 +197,7 @@ class Auth extends Component {
                 </form>
                 {this.state.Login && <Button btnType='Danger' className="btn btn-dark btn-lg btn-block" clicked={this.switchLoginHandler}>Create an Account</Button>}
                 {!this.state.Login && <p onClick={this.switchLoginHandler} className="forgot-password text-right">
-                    Already registered <a href="#">log in?</a>
+                    Already registered <span style={{color:'blue',cursor: 'pointer'}}>log in?</span>
                 </p>}
 
             </div>
@@ -216,7 +216,7 @@ const mapStateToProps = state =>
 const mapDispatchToProps = dispatch=>
 {
     return {
-        onAuth: (email,password,login) =>{ dispatch(actions.auth(email,password,login))}
+        onAuth: (email,password,login,history) =>{ dispatch(actions.auth(email,password,login,history))}
 
     }
 }
