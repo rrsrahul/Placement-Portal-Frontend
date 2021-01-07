@@ -1,0 +1,10 @@
+.row {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    justify-content:space-evenly;
+  }
+
+  .comp {
+    margin: 20px;
+  }

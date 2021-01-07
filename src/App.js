@@ -39,7 +39,7 @@ function App(props) {
           <Route path='/' exact component={CompanyList}/>
 
         </Switch>
-       
+      
 
       </Layout>
     </div>
