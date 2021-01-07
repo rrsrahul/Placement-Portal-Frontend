@@ -3,16 +3,40 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Company from '../../Components/Company/Company';
 import classes from './CompanyList.module.css'
+import axios from 'axios'
 
 
 
 class CompanyList extends Component
 {
     
-    onApplyHandler = (index)=>
+    onApplyHandler = (company)=>
     {
        
-        console.log('Applied to '+ this.state.companies[index].name + ' ')
+        const applyData ={
+             compName: company.name,
+            position: company.position,
+            id:this.props.userId
+        }
+
+        axios.post('http://localhost:8080/apply',applyData)
+        .then(res =>
+            {
+                console.log(res.data)
+            })
+            .catch(err=>
+                {
+                    console.log(err)
+                }
+                
+            )
+
+        
+    }
+
+    onLearnMoreHandler = (company)=>
+    {
+        
     }
 
     render()
@@ -24,14 +48,15 @@ class CompanyList extends Component
             let year = dateObj.getUTCFullYear();
             
             const newdate = day + "/" + month + "/" +year ;
-            console.log(company)
             return (<div className={classes.comp} key={company.name + company.jd}>
                 <Company
                  Name={company.name}
                  ctc={company.ctc}
                  role={company.position}
                  date={newdate}
-                clicked={()=>{console.log('Button')}}/>
+                 clicked={()=>{this.onApplyHandler(company)}}
+                 learnMore ={(company)=>{this.onLearnMoreHandler(company)}}
+                />
             </div>)
             
         })
@@ -53,7 +78,8 @@ class CompanyList extends Component
 const mapStateToProps = state =>
 {
     return {
-        companies: state.comp.companies
+        companies: state.comp.companies,
+        userId: state.auth.userId
     }
 }
 export default connect(mapStateToProps)(CompanyList)

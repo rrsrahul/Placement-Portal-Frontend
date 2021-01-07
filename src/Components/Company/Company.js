@@ -22,7 +22,7 @@ export default function ImgMediaCard(props) {
       <CardActionArea>
         <CardMedia
           component="img"
-          alt="Contemplative Reptile"
+          alt={props.Name}
           height="140"
           image="/static/images/cards/contemplative-reptile.jpg"
           title="Contemplative Reptile"
@@ -40,7 +40,7 @@ export default function ImgMediaCard(props) {
         <Button size="small" color="primary" onClick={props.clicked}>
          Apply
         </Button>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" onClick={props.learnMore}>
           Learn More
         </Button>
       </CardActions>

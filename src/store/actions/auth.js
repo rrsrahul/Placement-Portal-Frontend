@@ -38,7 +38,7 @@ export const logout = ()=>
 }
 
 
-export const auth = (email,password,login)=>
+export const auth = (email,password,login,history)=>
 {
     return dispatch =>
     {
@@ -53,8 +53,8 @@ export const auth = (email,password,login)=>
         {
             axios.post(url,authData)
             .then(res=>{
-                console.log(res.data)
                 dispatch(authSuccess(res.data.token,res.data.userId));
+                
             })
             .catch(err=>
                 {
@@ -81,8 +81,9 @@ export const auth = (email,password,login)=>
             localStorage.setItem('userId',res.data.userId);
 
 
-
+            
             dispatch(authSuccess(res.data.token,res.data.userId));
+            history.push('/')
             //dispatch(checkAuthTimeout(res.data.expiresIn))
         })
         .catch(err=>
