@@ -39,29 +39,26 @@ function App(props) {
     }
   })
 
-  let logout = null;
+    
+  
+  /*let logout = null;
   if(token!=null)
   {
     logout = <Route path='/logout exact' component={Logout}/>
-  }
+  }*/
   return (
-    <div className="App">
+    <div className='App'>
       <Layout isAuth={token!=null}>
-        <AnimatedSwitch
-          atEnter={{ opacity: 0 }}
-          atLeave={{ opacity: 0 }}
-          atActive={{ opacity: 1 }}
-          className="switch-wrapper"
-        >
-            <Route path="/auth" component={Auth} />
-            <Route path="/companies" component={CompanyList} />
-            <Route path="/company" component={CompanyData} />
-            <Route path="/user" component={UserData} />
-            {logout}
-            <Route path="/schedule" exact component={Schedule} />
-            <Route path="/companyInfo" exact component={CompanyInfo} />
-            <Route path="/" exact component={CompanyList} />
-        </AnimatedSwitch>
+        <Switch>
+          <Route path='/auth' component={Auth}/>
+          <Route path='/companies' component={CompanyList}/>
+          <Route path='/company' component={CompanyData}/>
+          <Route path='/user' component={UserData}/>
+          <Route path='/logout' component={Logout}/>
+          <Route path='/' exact component={CompanyList}/>
+        </Switch>
+      
+
       </Layout>
     </div>
   );
