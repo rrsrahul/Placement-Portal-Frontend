@@ -42,6 +42,7 @@ class CompanyList extends Component
 
     render()
     {
+
         let companies = this.props.companies.map( (company,index) =>{
             let dateObj = new Date(company.date);
            let month = dateObj.getUTCMonth() + 1; //months from 1-12
@@ -56,7 +57,6 @@ class CompanyList extends Component
                     })
             }
             
-
             const newdate = day + "/" + month + "/" +year ;
             return (<div className={classes.comp} key={company.name + company.jd}>
                 <Company

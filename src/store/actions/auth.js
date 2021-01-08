@@ -14,7 +14,8 @@ export const authSuccess = (token,userId)=>
     return {
         type:actionTypes.AUTH_SUCCESS,
         idToken:token,
-        userId:userId
+        userId:userId,
+        
     }
 }
 
@@ -81,7 +82,8 @@ export const auth = (email,password,login,history)=>
 
 
             
-            dispatch(authSuccess(res.data.token,res.data.userId));
+            dispatch(authSuccess(res.data.token,res.data.userId,res.data.userData));
+            console.log(res.data.user)
             history.push('/')
             //dispatch(checkAuthTimeout(res.data.expiresIn))
         })
@@ -108,10 +110,15 @@ export const authCheckState = ()=>
         {
            dispatch(logout())
         }
-        else{
+        else
+        {
                 const userId = localStorage.getItem('userId')
                 dispatch(authSuccess(token,userId)) 
         }
+               
+
+                
+        
     }
 }
 

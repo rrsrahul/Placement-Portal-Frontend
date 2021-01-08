@@ -19,6 +19,7 @@ const reducer = (state=initialState,action)=>
                 loading:true
             }
         case actionTypes.AUTH_SUCCESS:
+            console.log(action.userData)
                 return {
                     ...state,
                     token:action.idToken,
@@ -29,6 +30,8 @@ const reducer = (state=initialState,action)=>
         case actionTypes.AUTH_FAILED:
             return{
                 ...state,
+                token:null,
+                userId:null,
                 error:action.err,
                 loading:false
             }
