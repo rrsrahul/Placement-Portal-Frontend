@@ -11,9 +11,11 @@ const navigationItems = (props)=>
     if(props.isAuth)
     {
         auth=(<React.Fragment>
+            <NavigationItem link="/schedule">Schedule</NavigationItem>
             <NavigationItem link="/company"> Add Company</NavigationItem>
             <NavigationItem link="/user">Profile</NavigationItem>
             <NavigationItem link="/logout">Logout</NavigationItem>
+            
             </React.Fragment>)
     }
     else
@@ -25,7 +27,7 @@ const navigationItems = (props)=>
     return (
         <ul className={classes.NavigationItems}>
            <NavigationItem link="/" >
-               Schedule
+                Companies
            </NavigationItem>
             {auth}
            

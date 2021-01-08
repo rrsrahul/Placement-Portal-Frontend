@@ -51,6 +51,7 @@ function App(props) {
       <Layout isAuth={token!=null}>
         <Switch>
           <Route path='/auth' component={Auth}/>
+  
           <Route path='/companies' component={CompanyList}/>
           <Route path='/company' component={CompanyData}/>
           <Route path='/user' component={UserData}/>
