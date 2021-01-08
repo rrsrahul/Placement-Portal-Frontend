@@ -83,7 +83,7 @@ class UserAvatar extends React.Component {
     return (
       <div aria-label={name} className={classes.join(' ')} style={style}>
         <div className="UserAvatar--inner" style={innerStyle}>
-          {inner}
+          <p style={{fontSize: 30}}>{inner}</p>
         </div>
       </div>
     )
