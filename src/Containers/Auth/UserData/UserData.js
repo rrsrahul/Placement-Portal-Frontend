@@ -17,8 +17,8 @@ class UserData extends Component {
                name:{
                 elementType:'input',
                 elementConfig:{
-                    type:'text',
-                    placeholder:'Name'
+                    type: 'Name',
+                    placeholder: 'Enter name',
                 },
                 value:'',
                 validation:
@@ -31,8 +31,8 @@ class UserData extends Component {
             usn:{
                 elementType:'input',
                 elementConfig:{
-                    type:'text',
-                    placeholder:'USN'
+                    type:'USN',
+                    placeholder:'Enter USN'
                 },
                 value:'',
                 validation:
@@ -45,6 +45,7 @@ class UserData extends Component {
            gender:{
                 elementType:'select',
                 elementConfig:{
+                    type: "Gender",
                     options:[
                         {value:'male',displayValue:'Male'},
                         {value:'female',displayValue:'Female'},
@@ -57,8 +58,8 @@ class UserData extends Component {
             dob:{
                 elementType:'input',
                 elementConfig:{
-                    type:'text',
-                    placeholder:'Date of Birth'
+                    type: 'Date of Birth',
+                    placeholder: 'DD/MM/YYYY',
                 },
                 value:'',
                 validation:
@@ -71,8 +72,8 @@ class UserData extends Component {
             tenthMarks:{
                 elementType:'input',
                 elementConfig:{
-                    type:'text',
-                    placeholder:'Tenth Percentage'
+                    type:'Tenth Percentage',
+                    placeholder:'%'
                 },
                 value:'',
                 validation:
@@ -85,8 +86,8 @@ class UserData extends Component {
             twelfthMarks:{
                 elementType:'input',
                 elementConfig:{
-                    type:'text',
-                    placeholder:'12th Percentage'
+                    type:'12th Percentage',
+                    placeholder:'%'
                 },
                 value:'',
                 validation:
@@ -99,8 +100,8 @@ class UserData extends Component {
             diplomaPercentage:{
                 elementType:'input',
                 elementConfig:{
-                    type:'text',
-                    placeholder:'Diploma Percentage(none if 12th)'
+                    type:'Diploma Percentage',
+                    placeholder:'%(none if 12th)'
                 },
                 value:'',
                 validation:
@@ -116,17 +117,21 @@ class UserData extends Component {
                     options:[
                         {value:'ISE',displayValue:'Information Science'},
                         {value:'CSE',displayValue:'Computer Science'},
-                        {value:'EEE',displayValue:'Electrical and Electronics'}
+                        {value:'EEE',displayValue:'Electrical and Electronics'},
+                        { value: "ECE", displayValue: "Electrical and Communication" },
+                        { value: "TCE", displayValue: "TeleCommunication" },
+                        { value: "CHE", displayValue: "Chemical" },
+                        { value: "MECH", displayValue: "Mechanical" },
                     ]
                 },
-                value:'Male',
+                value:'ISE',
                 valid:true
             },
            semester:{
                 elementType:'input',
                 elementConfig:{
-                    type:'text',
-                    placeholder:'Semester'
+                    type:'Semester',
+                    placeholder:'Enter Semester'
                 },
                 value:'',
                 validation:
@@ -139,8 +144,8 @@ class UserData extends Component {
             cgpa:{
                 elementType:'input',
                 elementConfig:{
-                    type:'text',
-                    placeholder:'B.E cgpa'
+                    type:'B.E cgpa',
+                    placeholder:'Enter cgpa'
                 },
                 value:'',
                 validation:
@@ -153,8 +158,8 @@ class UserData extends Component {
            backlogs:{
                 elementType:'input',
                 elementConfig:{
-                    type:'text',
-                    placeholder:'Number of Active Backlogs'
+                    type:'Number of Active Backlogs',
+                    placeholder:'0'
                 },
                 value:'',
                 validation:
@@ -167,8 +172,8 @@ class UserData extends Component {
            backlogsCleared:{
                 elementType:'input',
                 elementConfig:{
-                    type:'text',
-                    placeholder:'Number of Backlogs Cleared'
+                    type:'Number of Backlogs Cleared',
+                    placeholder:'0'
                 },
                 value:'',
                 validation:
@@ -181,8 +186,8 @@ class UserData extends Component {
             address:{
                 elementType:'textarea',
                 elementConfig:{
-                    type:'text',
-                    placeholder:'Permanent Address'
+                    type:'Permanent Address',
+                    placeholder:''
                 },
                 value:'',
                 validation:
@@ -195,8 +200,8 @@ class UserData extends Component {
            phoneNo:{
                 elementType:'input',
                 elementConfig:{
-                    type:'text',
-                    placeholder:'Phone Number'
+                    type:'Phone Number',
+                    placeholder:''
                 },
                 value:'',
                 validation:
@@ -344,6 +349,7 @@ class UserData extends Component {
                     key={formElement.id}
                     elementType={formElement.config.elementType} 
                     elementConfig={formElement.config.elementConfig} 
+                    label={formElement.config.elementConfig.type}
                     value={formElement.config.value}
                     invalid = {!formElement.config.valid}
                     shouldValidate = {formElement.config.validation}
@@ -357,10 +363,15 @@ class UserData extends Component {
         return (
             <div className={classes.Auth} >
                 <form onSubmit={(event)=>{this.submitHandler(event)}}>
-                   <div style={{display: "flex", justifyContent:"center",alignItems:"center"}}> 
+                   <div style={{display: "flex", justifyContent:"center",alignItems:"center", marginBottom: 20}}> 
                     <UserAvatar  size="150" name="Rahul R S" src={image}/> 
                    </div>
-                   <input type="file" onChange={(event)=>{this.fileChangedHandler(event)}} /> 
+                   <div style={{maxWidth: "100%", justifyContent: "center", display : "flex"}}>
+                   <label className="btn btn-info btn-sm"> Update Picture
+                   <input type="file" hidden onChange={(event)=>{this.fileChangedHandler(event)}} /> 
+                   </label>
+                   </div>
+
                 {form}
                 <Button btnType='Success' className="btn btn-dark btn-lg btn-block" disabled={!this.state.formIsValid} > Submit</Button>
                 </form>
