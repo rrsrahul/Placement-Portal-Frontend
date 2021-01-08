@@ -29,7 +29,6 @@ export default function ImgMediaCard(props) {
    </Button>)
   }
 
-
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -54,7 +53,7 @@ export default function ImgMediaCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary" onClick={props.clicked} disabled={props.isApplied?true:false}>
+        <Button size="small" color="primary" onClick={props.clicked} disabled={props.isApplied}>
          Apply
         </Button>
         {applied}

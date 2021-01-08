@@ -114,6 +114,3 @@ export const authCheckState = ()=>
         }
     }
 }
-
-//Get the current student and store it in the state
-//axios.get('http:localhost:8080/students/'+userId).then().catch()

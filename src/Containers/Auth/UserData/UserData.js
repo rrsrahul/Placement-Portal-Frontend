@@ -201,7 +201,6 @@ class UserData extends Component {
       }
     },
                formIsValid:false,
-               selectedFile: null,
                error:null
  }
   
@@ -265,24 +264,22 @@ class UserData extends Component {
     {
         event.preventDefault();
 
+        const userData = {
+            name:this.state.controls.name.value,
+              cgpa:this.state.controls.cgpa.value,
+              branch:this.state.controls.branch.value,
+              address:this.state.controls.address.value,
+              phone:this.state.controls.phoneNo.value,
+              tenthMarks:this.state.controls.tenthMarks.value,
+              twelfthMarks:this.state.controls.twelfthMarks.value,
+              dob:this.state.controls.dob.value,
+              gender:this.state.controls.gender.value,
+              diplomaPercentage:this.state.controls.diplomaPercentage.value,
+              semester:this.state.controls.semester.value
 
-        const formData = new FormData();
-        formData.append('name',this.state.controls.name.value)
-        formData.append('cgpa',this.state.controls.cgpa.value)
-        formData.append('branch',this.state.controls.branch.value)
-        formData.append('address',this.state.controls.address.value)
-        formData.append('phone',this.state.controls.phoneNo.value)
-        formData.append('tenthMarks',this.state.controls.tenthMarks.value)
-        formData.append('twelfthMarks',this.state.controls.twelfthMarks.value)
-        formData.append('dob',this.state.controls.dob.value)
-        formData.append('gender',this.state.controls.gender.value)
-        formData.append('diplomaPercentage',this.state.controls.diplomaPercentage.value)
-        formData.append('semester',this.state.controls.semester.value)
-        formData.append('image',this.state.selectedFile)
+        }
 
-
-
-        axios.post('http://localhost:8080/students/'+this.props.userId,formData)
+        axios.post('http://localhost:8080/students/'+this.props.userId,userData)
         .then( res =>
         {
            console.log(res.data);
@@ -326,14 +323,13 @@ class UserData extends Component {
                      
                 )
             })
-            const image = 'http://localhost:8080/images/download.jpg'
+
         return (
             <div className={classes.Auth} >
                 <form onSubmit={(event)=>{this.submitHandler(event)}}>
                    <div style={{display: "flex", justifyContent:"center",alignItems:"center"}}> 
-                    <UserAvatar  size="150" name="Rahul R S" src={image}/> 
+                    <UserAvatar  size="84" name="Rahul R S"/> 
                    </div>
-                   <input type="file" onChange={(event)=>{this.fileChangedHandler(event)}} /> 
                 {form}
                 <Button btnType='Success' className="btn btn-dark btn-lg btn-block" disabled={!this.state.formIsValid} > Submit</Button>
                 </form>
