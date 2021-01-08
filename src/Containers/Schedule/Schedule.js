@@ -56,14 +56,13 @@ class Schedule extends Component {
       },
     ];
     return (
-      <div style={{ width: "1000px", margin: "auto" }}>
+      <div style={{ width: "700px", margin: "auto", paddingRight: 100 }}>
         <Chrono
           items={items}
           mode="VERTICAL"
           hideControls
-          scrollable
           theme={{
-            secondary: "#ffffff",
+            secondary: "#ffffff"
           }}
         />
       </div>
