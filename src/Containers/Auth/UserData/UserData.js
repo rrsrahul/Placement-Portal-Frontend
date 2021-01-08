@@ -206,9 +206,6 @@ class UserData extends Component {
                 valid:false,
                 touched:false
             },
-            
-
-            
 
         },
                formIsValid:false,

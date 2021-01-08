@@ -1,10 +1,12 @@
 
 import './App.css';
 import {useEffect} from 'react'
+import React from 'react'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import CompanyList from './Containers/CompanyList/CompanyList'
 import Auth from './Containers/Auth/Auth'
 import Layout from './Containers/Layout/Layout';
+import { Redirect } from "react-router";
 import {Switch,Route} from 'react-router-dom';
 import {useDispatch,useSelector} from 'react-redux';
 import * as actions from './store/actions/index'
@@ -46,17 +48,28 @@ function App(props) {
   {
     logout = <Route path='/logout exact' component={Logout}/>
   }*/
-  return (
-    <div className='App'>
-      <Layout isAuth={token!=null}>
-        <Switch>
-          <Route path='/auth' component={Auth}/>
-  
+  let SignIn = null;
+  if(token!=null)
+  {
+    SignIn = (
+
+          <React.Fragment>
           <Route path='/companies' component={CompanyList}/>
           <Route path='/company' component={CompanyData}/>
           <Route path='/user' component={UserData}/>
           <Route path='/logout' component={Logout}/>
+          </React.Fragment>
+
+    )
+  }
+  return (
+    <div className='App'>
+      <Layout isAuth={token!=null}>
+        <Switch>
+          {SignIn}
+          <Route path='/auth' component={Auth}/>
           <Route path='/' exact component={CompanyList}/>
+          <Redirect to='/'/>
         </Switch>
       
 
