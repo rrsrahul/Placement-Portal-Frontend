@@ -14,7 +14,7 @@ class Auth extends Component {
                 elementType:'input',
                 elementConfig:{
                     type:'Email',
-                    placeholder:'Email Address'
+                    placeholder:'Enter Email'
                 },
                 value:'',
                 validation:
@@ -29,7 +29,7 @@ class Auth extends Component {
                 elementType:'input',
                 elementConfig:{
                     type:'Password',
-                    placeholder:'Password'
+                    placeholder:'Enter Password'
                 },
                 value:'',
                 validation:
@@ -44,7 +44,7 @@ class Auth extends Component {
             elementType:'input',
             elementConfig:{
                 type:'Confrim Password',
-                placeholder:'Confrim Password'
+                placeholder:'Re-enter password'
             },
             value:'',
             validation:
