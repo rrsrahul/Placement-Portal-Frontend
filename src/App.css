@@ -1,17 +1,7 @@
 .App {
-  align-items: center;
-  justify-content: center;
-  align-self: center;
+  text-align: center;
 }
 
 .body,html{
-  background-color: rgb(240, 240, 240);
-}
-
-.switch-wrapper {
-  position: relative;
-}
- 
-.switch-wrapper > div {
-  position: absolute;
+  background-color: rgb(255, 255, 255);
 }
