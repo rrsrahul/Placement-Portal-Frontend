@@ -249,16 +249,7 @@ class UserData extends Component {
       formIsValid = updatedControls[inputIdentifiers].valid && formIsValid;
     }
 
-    this.setState({
-      controls: updatedControls,
-      formIsValid: formIsValid,
-    });
-  };
-
-    fileChangedHandler = (event)=>
-    {
-        this.setState({ selectedFile: event.target.files[0] });
-    }
+  }
 
     submitHandler = (event)=>
     {
