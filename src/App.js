@@ -36,14 +36,14 @@ function App(props) {
     }
   });
 
-  /*let logout = null;
+  let logout = null;
   if(token!=null)
   {
     logout = <Route path='/logout exact' component={Logout}/>
-  }*/
+  }
   return (
     <div className="App">
-      <Layout isAuth={token == null}>
+      <Layout isAuth={token!=null}>
         <AnimatedSwitch
           atEnter={{ opacity: 0 }}
           atLeave={{ opacity: 0 }}
@@ -54,10 +54,10 @@ function App(props) {
             <Route path="/companies" component={CompanyList} />
             <Route path="/company" component={CompanyData} />
             <Route path="/user" component={UserData} />
-            <Route path="/logout" component={Logout} />
-            <Route path="/" exact component={CompanyList} />
+            {logout}
             <Route path="/schedule" exact component={Schedule} />
             <Route path="/companyInfo" exact component={CompanyInfo} />
+            <Route path="/" exact component={CompanyList} />
         </AnimatedSwitch>
       </Layout>
     </div>

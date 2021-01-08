@@ -1,13 +1,14 @@
 .Auth {
-    width: 450px;
-    margin: auto;
-    margin-left: 100%;
-    margin-top: 50px;
-    background: #ffffff;
-    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-    padding: 40px 55px 45px 55px;
-    border-radius: 15px;
-    transition: all .3s;
+        margin:20px auto;
+        width: 80%;
+        text-align: center;
+        box-shadow: 2px 3px #ccc;
+        border:1px solid #eeeeee;
+        box-sizing: border-box;
+        padding: 10px;
+    
+    
+    
   }
 
 @media (min-width:600px)
