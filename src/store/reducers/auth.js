@@ -42,6 +42,16 @@ const reducer = (state=initialState,action)=>
                 token:null,
                 userId:null
             }
+        case actionTypes.GET_USERDATASUCCESS:
+            return {
+                ...state,
+                userData:action.userData
+            }
+        case actionTypes.GET_USERDATAFAILED:
+            return {
+                ...state,
+                err:action.err
+            }
         default:
             return {
                 ...state

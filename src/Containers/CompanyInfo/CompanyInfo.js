@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Chrono } from "react-chrono";
-import { auth } from "../../store/actions";
+
 
 class CompanyInfo extends Component {
   render() {

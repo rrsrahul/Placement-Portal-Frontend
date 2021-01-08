@@ -7,7 +7,7 @@ import UserAvatar from '../../../Components/UI/Avatar/UserAvatar';
 import axios from 'axios';
 import {connect} from 'react-redux'
 //import {connect} from 'react-redux';
-//import * as actions from '../../../store/actions/index';
+import * as actions from '../../../store/actions/index';
 
 
 class UserData extends Component {
@@ -20,7 +20,7 @@ class UserData extends Component {
                     type: 'Name',
                     placeholder: 'Enter name',
                 },
-                value:'',
+                value:this.props.userData.name,
                 validation:
                 {
                     required:true,
@@ -215,10 +215,11 @@ class UserData extends Component {
         },
                formIsValid:false,
                selectedFile: null,
+               userData:{},
                error:null
             }
        
-   
+        
 
     checkValidity(value,rules)
     {
@@ -384,16 +385,17 @@ class UserData extends Component {
 const mapStateToProps = state =>
 {
     return {
-        userId:state.auth.userId
+        userId:state.auth.userId,
+        userData:state.auth.userData
 
     }
 }
 
-/*const mapDispatchToProps = dispatch=>
+const mapDispatchToProps = dispatch=>
 {
     return {
-        onAuth: (email,password,login) =>{ dispatch(actions.auth(email,password,login))}
+       onGetUser: (userId) =>{ dispatch(actions.getUser(userId))}
 
     }
-}*/
-export  default connect(mapStateToProps)(UserData);
+}
+export  default connect(mapStateToProps,mapDispatchToProps)(UserData);

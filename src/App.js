@@ -34,6 +34,7 @@ function App(props) {
       .then(res =>
       {
          dispatch(actions.applyStart(res.data))
+         dispatch(actions.getUser(userId))
       })
       .catch(err=>
       {

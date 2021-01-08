@@ -124,3 +124,30 @@ export const authCheckState = ()=>
 
 //Get the current student and store it in the state
 //axios.get('http:localhost:8080/students/'+userId).then().catch()
+
+export const getUserSuccess = (data)=>{
+    return {
+        type:actionTypes.GET_USERDATASUCCESS,
+        userData:data
+    }
+}
+
+export const getUserFailed = (err)=>{
+    return {
+        type:actionTypes.GET_USERDATAFAILED,
+        err:err
+    }
+}
+
+export const getUser = (userId)=>{
+    return dispatch =>{
+        axios.get('http://localhost:8080/students/'+userId)
+            .then(res=>{
+                dispatch(getUserSuccess(res.data))
+            })
+            .catch(err=>{
+                dispatch(getUserFailed(err))
+            })
+    }
+
+}
