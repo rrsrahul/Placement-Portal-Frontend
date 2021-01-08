@@ -15,7 +15,7 @@ class CompanyData extends Component {
                name:{
                 elementType:'input',
                 elementConfig:{
-                    type:'text',
+                    type:'Company Name',
                     placeholder:'Name'
                 },
                 value:'',
@@ -29,8 +29,8 @@ class CompanyData extends Component {
             cutoff:{
                 elementType:'input',
                 elementConfig:{
-                    type:'text',
-                    placeholder:'Eligibility Criteria(CGPA)'
+                    type:'Eligibility Criteria(CGPA)',
+                    placeholder:'CGPA'
                 },
                 value:'',
                 validation:
@@ -43,8 +43,8 @@ class CompanyData extends Component {
             ctc: {
                 elementType:'input',
                 elementConfig:{
-                    type:'text',
-                    placeholder:'CTC for Full Time Hiring'
+                    type:'CTC for Full Time Hiring',
+                    placeholder:'CTC'
                 },
                 value:'',
                 validation:
@@ -58,8 +58,8 @@ class CompanyData extends Component {
             internship:{
                 elementType:'input',
                 elementConfig:{
-                    type:'text',
-                    placeholder:'Stipend for Internship'
+                    type:'Stipend for Internship',
+                    placeholder:''
                 },
                 value:'',
                 validation:
@@ -72,8 +72,8 @@ class CompanyData extends Component {
             position:{
                 elementType:'input',
                 elementConfig:{
-                    type:'text',
-                    placeholder:'The position for hiring students'
+                    type:'The position for hiring students',
+                    placeholder:''
                 },
                 value:'',
                 validation:
@@ -86,8 +86,8 @@ class CompanyData extends Component {
             date:{
                 elementType:'input',
                 elementConfig:{
-                    type:'text',
-                    placeholder:'Date of Placement Test'
+                    type:'Date of Placement Test',
+                    placeholder:'DD/MM/YYYY'
                 },
                 value:'',
                 validation:
@@ -100,8 +100,8 @@ class CompanyData extends Component {
             jobLocation:{
                 elementType:'input',
                 elementConfig:{
-                    type:'text',
-                    placeholder:'Job Location'
+                    type:'Job Location',
+                    placeholder:'Location'
                 },
                 value:'',
                 validation:
@@ -114,8 +114,8 @@ class CompanyData extends Component {
             jobDescription:{
                 elementType:'input',
                 elementConfig:{
-                    type:'text',
-                    placeholder:'Job Description'
+                    type:'Job Description',
+                    placeholder:'JD'
                 },
                 value:'',
                 validation:
@@ -128,8 +128,8 @@ class CompanyData extends Component {
             additionalInfo:{
                 elementType:'input',
                 elementConfig:{
-                    type:'text',
-                    placeholder:'Additional Information'
+                    type:'Additional Information',
+                    placeholder:''
                 },
                 value:'',
                 validation:
@@ -250,6 +250,7 @@ class CompanyData extends Component {
                     elementType={formElement.config.elementType} 
                     elementConfig={formElement.config.elementConfig} 
                     value={formElement.config.value}
+                    label={formElement.config.elementConfig.type}
                     invalid = {!formElement.config.valid}
                     shouldValidate = {formElement.config.validation}
                     touched={formElement.config.touched}
