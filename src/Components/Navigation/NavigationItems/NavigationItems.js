@@ -24,7 +24,7 @@ const navigationItems = (props)=>
     }
     return (
         <ul className={classes.NavigationItems}>
-           <NavigationItem link="/companyInfo" >
+           <NavigationItem link="/" >
                Schedule
            </NavigationItem>
             {auth}

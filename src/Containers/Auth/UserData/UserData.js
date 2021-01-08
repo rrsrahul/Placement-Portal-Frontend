@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import Input from "../../../Components/UI/Input/Input";
+import React, { Component } from 'react';
+import Input from '../../../Components/UI/Input/Input';
 //import Spinner from '../../../Components/UI/Spinner/Spinner'
 import Button from "../../../Components/UI/Button/Button";
 import classes from "./UserData.module.css";
@@ -8,6 +8,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 //import {connect} from 'react-redux';
 //import * as actions from '../../../store/actions/index';
+
 
 class UserData extends Component {
 
@@ -206,50 +207,62 @@ class UserData extends Component {
   
    
 
-  checkValidity(value, rules) {
-    if (!rules) {
-      return true;
-    }
-    let isValid = true;
-
-    if (rules.required) {
-      isValid = value.trim() !== "" && isValid;
-    }
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-    }
-    if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
-    }
-    if (rules.isEmail) {
-      const pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-      isValid = pattern.test(value) && isValid;
-    }
-
-    return isValid;
-  }
-
-  inputChangedHandler = (event, controlName) => {
-    const updatedControls = {
-      ...this.state.controls,
-      [controlName]: {
-        ...this.state.controls[controlName],
-        value: event.target.value,
-        valid: this.checkValidity(
-          event.target.value,
-          this.state.controls[controlName].validation
-        ),
-        touched: true,
-      },
-    };
-
-    let formIsValid = true;
-
-    for (let inputIdentifiers in updatedControls) {
-      formIsValid = updatedControls[inputIdentifiers].valid && formIsValid;
+    checkValidity(value,rules)
+    {
+        if(!rules)
+        {
+            return true;
+        }
+        let isValid = true;
+        
+            if(rules.required)
+            {
+                isValid = value.trim() !=='' && isValid;
+            }
+            if(rules.minLength)
+            {
+                isValid = value.length>= rules.minLength && isValid;
+            }
+            if(rules.maxLength)
+            {
+                isValid = value.length<=rules.maxLength && isValid;
+            }
+            if(rules.isEmail)
+            {
+                const pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+                isValid = pattern.test(value) && isValid;
+            }
+      
+        return isValid
     }
 
-  }
+
+    inputChangedHandler = (event,controlName) =>
+    {
+        const updatedControls = {
+            ...this.state.controls,
+            [controlName]:{
+                ...this.state.controls[controlName],
+                value:event.target.value,
+                valid: this.checkValidity(event.target.value,this.state.controls[controlName].validation),
+                touched:true
+            }
+        }
+
+        let formIsValid = true;
+
+        for(let inputIdentifiers in updatedControls)
+        {
+            formIsValid = updatedControls[inputIdentifiers].valid && formIsValid;
+        }
+
+
+        this.setState({
+            controls:updatedControls,
+            formIsValid:formIsValid
+        })
+    }
+
 
     submitHandler = (event)=>
     {
@@ -343,4 +356,4 @@ const  mapStateToProps = (state) => {
 
     }
 }*/
-export default connect(mapStateToProps)(UserData);
+export  default connect(mapStateToProps)(UserData);

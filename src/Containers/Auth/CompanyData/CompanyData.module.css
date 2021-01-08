@@ -1,8 +1,8 @@
 .Auth
 {
     margin:20px auto;
-    margin-left: 100%;
     width: 80%;
+    text-align: center;
     background: #ffffff;
     box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
     box-sizing: border-box;
@@ -10,6 +10,7 @@
     border-radius: 15px;
     transition: all .3s;
 }
+
 
 @media (min-width:600px)
 {

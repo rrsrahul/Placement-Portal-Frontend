@@ -1,40 +1,43 @@
-import "./App.css";
-import { useEffect } from "react";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import CompanyList from "./Containers/CompanyList/CompanyList";
-import Auth from "./Containers/Auth/Auth";
-import Layout from "./Containers/Layout/Layout";
-import { Route } from "react-router-dom";
-import { AnimatedSwitch } from "react-router-transition";
-import { useDispatch, useSelector } from "react-redux";
-import * as actions from "./store/actions/index";
-import CompanyData from "./Containers/Auth/CompanyData/CompanyData";
-import UserData from "./Containers/Auth/UserData/UserData";
-import Logout from "./Containers/Auth/Logout/Logout";
-import Schedule from "./Containers/Schedule/Schedule";
-import CompanyInfo from "./Containers/CompanyInfo/CompanyInfo";
-import axios from "axios";
+
+import './App.css';
+import {useEffect} from 'react'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import CompanyList from './Containers/CompanyList/CompanyList'
+import Auth from './Containers/Auth/Auth'
+import Layout from './Containers/Layout/Layout';
+import {Switch,Route} from 'react-router-dom';
+import {useDispatch,useSelector} from 'react-redux';
+import * as actions from './store/actions/index'
+import CompanyData from './Containers/Auth/CompanyData/CompanyData';
+import UserData from './Containers/Auth/UserData/UserData';
+import Logout from './Containers/Auth/Logout/Logout';
+import axios from 'axios';
+
+
 
 function App(props) {
-  const token = useSelector((state) => state.auth.token);
+
+  const token = useSelector(state => state.auth.token);
   const dispatch = useDispatch();
-  let t = useSelector((state) => state.auth.token);
-  let userId = useSelector((state) => state.auth.userId);
+  let t = useSelector(state =>state.auth.token)
+  let userId = useSelector(state =>state.auth.userId)
   useEffect(() => {
-    console.log("use Effect");
-    dispatch(actions.getCompanies());
-    dispatch(actions.authCheckState());
-    if (t != null) {
-      axios
-        .get("http://localhost:8080/apply/student/?userId=" + userId)
-        .then((res) => {
-          dispatch(actions.applyStart(res.data));
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    console.log('use Effect')
+    dispatch(actions.getCompanies())
+    dispatch(actions.authCheckState())
+    if(t!=null)
+    {
+      axios.get('http://localhost:8080/apply/student/?userId='+userId)
+      .then(res =>
+      {
+         dispatch(actions.applyStart(res.data))
+      })
+      .catch(err=>
+      {
+        console.log(err)
+      });
     }
-  });
+  })
 
   let logout = null;
   if(token!=null)
@@ -64,4 +67,6 @@ function App(props) {
   );
 }
 
-export default App;
+
+
+export default (App);
