@@ -11,6 +11,8 @@ import {Switch,Route} from 'react-router-dom';
 import {useDispatch,useSelector} from 'react-redux';
 import * as actions from './store/actions/index'
 import CompanyData from './Containers/Auth/CompanyData/CompanyData';
+import Schedule from './Containers/Schedule/Schedule';
+import CompanyInfo from './Containers/CompanyInfo/CompanyInfo';
 import UserData from './Containers/Auth/UserData/UserData';
 import Logout from './Containers/Auth/Logout/Logout';
 import axios from 'axios';
@@ -54,6 +56,8 @@ function App(props) {
     SignIn = (
 
           <React.Fragment>
+          <Route path='/schedule' component={Schedule}/>
+          <Route path='/companyInfo' component={CompanyInfo}/>
           <Route path='/companies' component={CompanyList}/>
           <Route path='/company' component={CompanyData}/>
           <Route path='/user' component={UserData}/>
