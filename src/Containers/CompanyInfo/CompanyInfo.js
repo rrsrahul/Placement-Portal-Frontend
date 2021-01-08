@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Chrono } from "react-chrono";
 
-
 class CompanyInfo extends Component {
   render() {
     let itemsLeft = [
