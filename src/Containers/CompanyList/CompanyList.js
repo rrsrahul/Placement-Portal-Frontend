@@ -25,7 +25,7 @@ class CompanyList extends Component
 
     onLearnMoreHandler = (company)=>
     {
-        
+        this.props.history.push('/company?id='+company._id)
     }
 
     onWithdrawHandler = (company)=>

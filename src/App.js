@@ -14,6 +14,7 @@ import CompanyData from './Containers/Auth/CompanyData/CompanyData';
 import Schedule from './Containers/Schedule/Schedule';
 import UserData from './Containers/Auth/UserData/UserData';
 import Logout from './Containers/Auth/Logout/Logout';
+import CompanyInfo from './Containers/CompanyInfo/CompanyInfo';
 import axios from 'axios';
 
 
@@ -66,7 +67,8 @@ function App(props) {
 
          <Switch>
           <Route path='/schedule' component={Schedule}/>
-          <Route path='/company' component={CompanyData}/>
+          <Route path='/addCompany' component={CompanyData}/>
+          <Route path='/company' component={CompanyInfo}/>
           <Route path='/user' component={UserData}/>
           <Route path='/logout' component={Logout}/>
           <Route path='/' exact component={CompanyList}/>

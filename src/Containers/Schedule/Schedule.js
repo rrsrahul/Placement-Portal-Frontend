@@ -20,10 +20,11 @@ class Schedule extends Component {
 
     
     return (
-      <div style={{ width: "700px", margin: "auto", paddingRight: 100 }}>
+      <div style={{ width: "700px", margin: "auto", paddingRight: 100}}>
         <Chrono
           items={comps}
           mode="VERTICAL"
+          cardHeight="100"
           hideControls
           theme={{
             secondary: "#ffffff"
