@@ -4,6 +4,8 @@ export const AUTH_START = 'AUTH_START';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAILED = 'AUTH_FAILED';
 export const AUTH_LOGOUT='LOGOUT';
+export const GET_USERDATASUCCESS = 'GET_USERDATASUCCESS';
+export const GET_USERDATAFAILED = 'GET_USERDATAFAILED';
 
 //Companies
 

@@ -12,7 +12,7 @@ const navigationItems = (props)=>
     {
         auth=(<React.Fragment>
             <NavigationItem link="/schedule">Schedule</NavigationItem>
-            <NavigationItem link="/company"> Add Company</NavigationItem>
+            <NavigationItem link="/addCompany"> Add Company</NavigationItem>
             <NavigationItem link="/user">Profile</NavigationItem>
             <NavigationItem link="/logout">Logout</NavigationItem>
             

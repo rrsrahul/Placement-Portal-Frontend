@@ -1,65 +1,30 @@
 import React, { Component } from "react";
 import { Chrono } from "react-chrono";
+import { connect } from "react-redux";
 
 class Schedule extends Component {
   render() {
-    let items = [
-      {
-        title: "Jan 5th",
-        cardTitle: "Dunkirk",
-        cardSubtitle:
-          "Men of the British Expeditionary Force (BEF) wade out to..",
-        cardDetailedText: `On 10 May 1940, Hitler began his long-awaited offensive in the west by invading neutral Holland and Belgium and attacking northern France. Holland capitulated after only five days of fighting, and the Belgians surrendered on 28 May. With the success of the German ‘Blitzkrieg’, the British Expeditionary Force and French troops were in danger of being cut off and destroyed.`,
-      },
-      {
-        title: "Jan 5th",
-        cardTitle: "Dunkirk",
-        cardSubtitle:
-          "Men of the British Expeditionary Force (BEF) wade out to..",
-        cardDetailedText: `On 10 May 1940, Hitler began his long-awaited offensive in the west by invading neutral Holland and Belgium and attacking northern France. Holland capitulated after only five days of fighting, and the Belgians surrendered on 28 May. With the success of the German ‘Blitzkrieg’, the British Expeditionary Force and French troops were in danger of being cut off and destroyed.`,
-      },
-      {
-        title: "Jan 5th",
-        cardTitle: "Dunkirk",
-        cardSubtitle:
-          "Men of the British Expeditionary Force (BEF) wade out to..",
-      },
-      {
-        title: "Jan 5th",
-        cardTitle: "Dunkirk",
-        cardSubtitle:
-          "Men of the British Expeditionary Force (BEF) wade out to..",
-      },
-      {
-        title: "Jan 5th",
-        cardTitle: "Dunkirk",
-        cardSubtitle:
-          "Men of the British Expeditionary Force (BEF) wade out to..",
-      },
-      {
-        title: "Jan 5th",
-        cardTitle: "Dunkirk",
-        cardSubtitle:
-          "Men of the British Expeditionary Force (BEF) wade out to..",
-      },
-      {
-        title: "Jan 5th",
-        cardTitle: "Dunkirk",
-        cardSubtitle:
-          "Men of the British Expeditionary Force (BEF) wade out to..",
-      },
-      {
-        title: "Jan 5th",
-        cardTitle: "Dunkirk",
-        cardSubtitle:
-          "Men of the British Expeditionary Force (BEF) wade out to..",
-      },
-    ];
+    let comps = this.props.companies.map(company =>{
+      let dateObj = new Date(company.date);
+      let month = dateObj.getUTCMonth() + 1; //months from 1-12
+       let day = dateObj.getUTCDate();
+       let year = dateObj.getUTCFullYear();
+       const newdate = day + "/" + month + "/" +year ;
+      return {
+        title:newdate,
+        cardTitle:company.name,
+        cardSubtitle:company.position,
+        cardDetailedText:company.jd
+      }
+    })
+
+    
     return (
-      <div style={{ width: "700px", margin: "auto", paddingRight: 100 }}>
+      <div style={{ width: "700px", margin: "auto", paddingRight: 100}}>
         <Chrono
-          items={items}
+          items={comps}
           mode="VERTICAL"
+          cardHeight="100"
           hideControls
           theme={{
             secondary: "#ffffff"
@@ -70,4 +35,9 @@ class Schedule extends Component {
   }
 }
 
-export default Schedule;
+const mapStateToProps = state =>{
+  return{
+    companies:state.comp.companies
+  }
+}
+export default connect(mapStateToProps)(Schedule);

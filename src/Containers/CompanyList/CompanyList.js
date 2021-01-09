@@ -25,7 +25,7 @@ class CompanyList extends Component
 
     onLearnMoreHandler = (company)=>
     {
-        
+        this.props.history.push('/company?id='+company._id)
     }
 
     onWithdrawHandler = (company)=>
@@ -48,13 +48,16 @@ class CompanyList extends Component
            let month = dateObj.getUTCMonth() + 1; //months from 1-12
             let day = dateObj.getUTCDate();
             let year = dateObj.getUTCFullYear();
-            let isApplied=null;
+            let isApplied=false;
             if(this.props.applied!==null)
             {
-                isApplied = this.props.applied.find(appliedComp =>
-                    {
-                        return ((appliedComp.name === company.name) && (appliedComp.position === company.position))
-                    })
+               this.props.applied.forEach(element => {
+                   if(element.name === company.name)
+                   {
+                       isApplied=true
+                   }
+                   
+               });            
             }
             
             const newdate = day + "/" + month + "/" +year ;

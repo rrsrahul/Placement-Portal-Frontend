@@ -7,7 +7,7 @@ import UserAvatar from '../../../Components/UI/Avatar/UserAvatar';
 import axios from 'axios';
 import {connect} from 'react-redux'
 //import {connect} from 'react-redux';
-//import * as actions from '../../../store/actions/index';
+import * as actions from '../../../store/actions/index';
 
 
 class UserData extends Component {
@@ -20,13 +20,13 @@ class UserData extends Component {
                     type: 'Name',
                     placeholder: 'Enter name',
                 },
-                value:'',
+                value:(this.props.userData.name? this.props.userData.name:''),
                 validation:
                 {
                     required:true,
                 },
-                valid:false,
-                touched:false
+                valid:(true),
+                touched:true
             },
             usn:{
                 elementType:'input',
@@ -34,13 +34,13 @@ class UserData extends Component {
                     type:'USN',
                     placeholder:'Enter USN'
                 },
-                value:'',
+                value:(this.props.userData.usn? this.props.userData.usn:''),
                 validation:
                 {
                     required:true,
                 },
-                valid:false,
-                touched:false
+                valid:(this.props.userData.usn?true:''),
+                touched:(this.props.userData.usn?true:'')
             },
            gender:{
                 elementType:'select',
@@ -61,13 +61,13 @@ class UserData extends Component {
                     type: 'Date of Birth',
                     placeholder: 'DD/MM/YYYY',
                 },
-                value:'',
+                value:(this.props.userData.dob? this.props.userData.dob:''),
                 validation:
                 {
                     required:true,
                 },
-                valid:false,
-                touched:false
+                valid:(this.props.userData.dob? true:false),
+                touched:(this.props.userData.dob? true:false)
             },
             tenthMarks:{
                 elementType:'input',
@@ -75,13 +75,13 @@ class UserData extends Component {
                     type:'Tenth Percentage',
                     placeholder:'%'
                 },
-                value:'',
+                value:(this.props.userData.tenthMarks? this.props.userData.tenthMarks:''),
                 validation:
                 {
                     required:true,
                 },
-                valid:false,
-                touched:false
+                valid:(this.props.userData.tenthMarks? true:false),
+                touched:(this.props.userData.tenthMarks? true:false)
             },
             twelfthMarks:{
                 elementType:'input',
@@ -89,13 +89,13 @@ class UserData extends Component {
                     type:'12th Percentage',
                     placeholder:'%'
                 },
-                value:'',
+                value:(this.props.userData.twelfthMarks? this.props.userData.twelfthMarks:''),
                 validation:
                 {
                     required:true,
                 },
-                valid:false,
-                touched:false
+                valid:(this.props.userData.twelfthMarks? true:false),
+                touched:(this.props.userData.twelfthMarks? true:false)
             },
             diplomaPercentage:{
                 elementType:'input',
@@ -103,13 +103,13 @@ class UserData extends Component {
                     type:'Diploma Percentage',
                     placeholder:'%(none if 12th)'
                 },
-                value:'',
+                value:(this.props.userData.diplomaPercentage? this.props.userData.diplomaPercentage:''),
                 validation:
                 {
                     required:true,
                 },
-                valid:false,
-                touched:false
+                valid:(this.props.userData.diplomaPercentage? true:false),
+                touched:(this.props.userData.diplomaPercentage? true:false)
             },
             branch:{
                 elementType:'select',
@@ -133,13 +133,13 @@ class UserData extends Component {
                     type:'Semester',
                     placeholder:'Enter Semester'
                 },
-                value:'',
+                value:(this.props.userData.semester? this.props.userData.semester:''),
                 validation:
                 {
                     required:true,
                 },
-                valid:false,
-                touched:false
+                valid:(this.props.userData.semester? true:''),
+                touched:(this.props.userData.semester? true:'')
             },
             cgpa:{
                 elementType:'input',
@@ -147,13 +147,13 @@ class UserData extends Component {
                     type:'B.E cgpa',
                     placeholder:'Enter cgpa'
                 },
-                value:'',
+                value:(this.props.userData.cgpa? this.props.userData.cgpa:''),
                 validation:
                 {
                     required:true,
                 },
-                valid:false,
-                touched:false
+                valid:(this.props.userData.cgpa? true:false),
+                touched:(this.props.userData.cgpa? true:false)
             },
            backlogs:{
                 elementType:'input',
@@ -161,13 +161,13 @@ class UserData extends Component {
                     type:'Number of Active Backlogs',
                     placeholder:'0'
                 },
-                value:'',
+                value:(this.props.userData.backlogs? this.props.userData.backlogs:''),
                 validation:
                 {
                     required:true,
                 },
-                valid:false,
-                touched:false
+                valid:(this.props.userData.backlogs? true:false),
+                touched:(this.props.userData.backlogs? true:false)
             },
            backlogsCleared:{
                 elementType:'input',
@@ -175,13 +175,13 @@ class UserData extends Component {
                     type:'Number of Backlogs Cleared',
                     placeholder:'0'
                 },
-                value:'',
+                value:(this.props.userData.backlogsCleared? this.props.userData.backlogsCleared:''),
                 validation:
                 {
                     required:true,
                 },
-                valid:false,
-                touched:false
+                valid:(this.props.userData.backlogsCleared? true:false),
+                touched:(this.props.userData.backlogsCleared? true:false)
             },
             address:{
                 elementType:'textarea',
@@ -189,13 +189,13 @@ class UserData extends Component {
                     type:'Permanent Address',
                     placeholder:''
                 },
-                value:'',
+                value:(this.props.userData.address?this.props.userData.address:''),
                 validation:
                 {
                     required:true,
                 },
-                valid:false,
-                touched:false
+                valid:(this.props.userData.address?true:false),
+                touched:(this.props.userData.address?true:false)
             },
            phoneNo:{
                 elementType:'input',
@@ -203,22 +203,23 @@ class UserData extends Component {
                     type:'Phone Number',
                     placeholder:''
                 },
-                value:'',
+                value:(this.props.userData.phone? this.props.userData.phone:''),
                 validation:
                 {
                     required:true,
                 },
-                valid:false,
-                touched:false
+                valid:(this.props.userData.phone? true:false),
+                touched:(this.props.userData.phone? true:false)
             },
 
         },
                formIsValid:false,
                selectedFile: null,
+               userData:{},
                error:null
             }
        
-   
+        
 
     checkValidity(value,rules)
     {
@@ -288,6 +289,7 @@ class UserData extends Component {
 
         const formData = new FormData();
         formData.append('name',this.state.controls.name.value)
+        formData.append('usn',this.state.controls.usn.value)
         formData.append('cgpa',this.state.controls.cgpa.value)
         formData.append('branch',this.state.controls.branch.value)
         formData.append('address',this.state.controls.address.value)
@@ -298,6 +300,8 @@ class UserData extends Component {
         formData.append('gender',this.state.controls.gender.value)
         formData.append('diplomaPercentage',this.state.controls.diplomaPercentage.value)
         formData.append('semester',this.state.controls.semester.value)
+        formData.append('backlogs',this.state.controls.backlogs.value)
+        formData.append('backlogsCleared',this.state.controls.backlogsCleared.value)
         formData.append('image',this.state.selectedFile)
 
 
@@ -306,6 +310,7 @@ class UserData extends Component {
         .then( res =>
         {
            console.log(res.data);
+           this.props.onGetUser(this.props.userId)
             this.props.history.replace('/')
 
         })
@@ -359,7 +364,7 @@ class UserData extends Component {
                      
                 )
             })
-            const image = 'http://localhost:8080/images/download.jpg'
+            const image = 'http://localhost:8080/'+this.props.userData.imageUrl
         return (
             <div className={classes.Auth} >
                 <form onSubmit={(event)=>{this.submitHandler(event)}}>
@@ -384,16 +389,17 @@ class UserData extends Component {
 const mapStateToProps = state =>
 {
     return {
-        userId:state.auth.userId
+        userId:state.auth.userId,
+        userData:state.auth.userData
 
     }
 }
 
-/*const mapDispatchToProps = dispatch=>
+const mapDispatchToProps = dispatch=>
 {
     return {
-        onAuth: (email,password,login) =>{ dispatch(actions.auth(email,password,login))}
+       onGetUser: (userId) =>{ dispatch(actions.getUser(userId))}
 
     }
-}*/
-export  default connect(mapStateToProps)(UserData);
+}
+export  default connect(mapStateToProps,mapDispatchToProps)(UserData);

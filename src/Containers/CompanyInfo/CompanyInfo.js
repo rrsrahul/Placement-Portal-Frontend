@@ -1,38 +1,58 @@
 import React, { Component } from "react";
 import { Chrono } from "react-chrono";
-import { auth } from "../../store/actions";
+import qs from 'query-string'
+import {connect} from 'react-redux';
 
 class CompanyInfo extends Component {
+
+  state = {
+    company:{}
+  }
+
+  UNSAFE_componentWillMount()
+
+  {
+    const parsed = qs.parse(this.props.location.search)
+    const id=parsed.id
+    const comp = this.props.companies.find(company =>{
+      return company._id===id
+    })
+    const newComp = {...comp}
+    this.setState({company:newComp})
+
+  }
+
+
   render() {
     let itemsLeft = [
       {
         title: "Job Description",
-        cardTitle: "Software Developer",
-        cardSubtitle: "Description .......",
+        cardTitle: this.state.company.position,
+        cardSubtitle: this.state.company.jd,
       },
       {
         title: "Job Location",
-        cardTitle: "Bangalore",
+        cardTitle: this.state.company.jobLocation,
       },
       {
         title: "Cost to Company",
         cardTitle: "Full time",
-        cardSubtitle: "10 LPA",
+        cardSubtitle: this.state.company.ctc,
       },
       {
         title: "Intenship Stipend",
-        cardTitle: "15,000 per month",
+        cardTitle: this.state.company.internship,
       },
     ];
     let itemsRight = [
       {
         title: "Eligibility Criteria",
         cardTitle: "CGPA",
-        cardSubtitle: "8.5",
+        cardSubtitle: this.state.company.eligibility,
       },
       {
         title: "Test Data",
-        cardTitle: "22nd Jan 2020",
+        cardTitle:this.state.company.date,
       },
       {
         title: "Cost to Company",
@@ -41,18 +61,21 @@ class CompanyInfo extends Component {
       },
       {
         title: "Additional Infomation",
-        cardTitle: "????????????????????",
+        cardTitle: this.state.company.additionalInformation,
       },
     ];
+
+      console.log(itemsLeft)
     return (
       <div style={{paddingTop: 50}}>
-        <h2 style={{textAlign: "center", margin: "auto", marginBottom: "50px"}}>COMPANY NAME</h2>
+        <h2 style={{textAlign: "center", margin: "auto", marginBottom: "50px"}}>{this.state.company.name}</h2>
         <div style={{ display: "flex", flexDirection: "row" }}>
           <div style={{ width: "600px", margin: "auto", marginRight: 0}}>
             <Chrono
               items={itemsLeft}
               mode="VERTICAL"
               hideControls
+              cardHeight="100"
               scrollable
               theme={{
                 secondary: "#ffffff",
@@ -64,6 +87,7 @@ class CompanyInfo extends Component {
               items={itemsRight}
               mode="VERTICAL"
               hideControls
+              cardHeight="100"
               scrollable
               theme={{
                 secondary: "#ffffff",
@@ -76,4 +100,10 @@ class CompanyInfo extends Component {
   }
 }
 
-export default CompanyInfo;
+const mapStateToProps = state =>{
+ return {
+companies:state.comp.companies
+ }
+}
+
+export default connect(mapStateToProps)(CompanyInfo);

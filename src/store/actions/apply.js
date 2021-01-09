@@ -38,7 +38,8 @@ export const onApply = (applyData)=>
                 axios.get('http://localhost:8080/apply/student/?userId='+applyData.id)
                 .then(res =>
                 {
-                        dispatch(applyStart(res.data))
+                        const name = applyData.compName;
+                        applyData.name = name;
                         dispatch(applySuccess(applyData))
                 });  
                
