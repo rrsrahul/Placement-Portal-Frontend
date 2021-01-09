@@ -28,6 +28,12 @@ export default function ImgMediaCard(props) {
     Withdraw
    </Button>)
   }
+  else
+  {
+    applied = (<Button size="small" color="primary" onClick={props.clicked} disabled={props.isApplied?true:false}>
+    Apply
+   </Button>)
+  }
 
 
   return (
@@ -54,9 +60,7 @@ export default function ImgMediaCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary" onClick={props.clicked} disabled={props.isApplied?true:false}>
-         Apply
-        </Button>
+        
         {applied}
         <Button size="small" color="primary" onClick={props.learnMore}>
           Learn More

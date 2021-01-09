@@ -33,7 +33,6 @@ const reducer = (state=initialState,action)=>
                 return comp.name !== action.applyData.compName
             })
             
-            console.log(action.applyData)
             return {
                 ...state,
                 applied:updatedApplied,
