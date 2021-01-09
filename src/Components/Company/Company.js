@@ -37,7 +37,7 @@ export default function ImgMediaCard(props) {
 
 
   return (
-    <Card className={classes.root} style={{borderRadius: "5px", boxShadow: "0px 7px 15px rgba(34, 35, 58, 0.4)", margin:"30px" }}>
+    <Card className={classes.root}>
       <CardActionArea>
       <CardMedia
           component="img"
