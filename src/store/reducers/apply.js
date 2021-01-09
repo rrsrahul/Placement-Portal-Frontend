@@ -30,8 +30,10 @@ const reducer = (state=initialState,action)=>
             }
         case actionTypes.ON_WITHDRAW_SUCCESS:
             const updatedApplied = state.applied.filter(comp=>{
-                return comp.name === action.applyData.name
+                return comp.name !== action.applyData.compName
             })
+            
+            console.log(action.applyData)
             return {
                 ...state,
                 applied:updatedApplied,
