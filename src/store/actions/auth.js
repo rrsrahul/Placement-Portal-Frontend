@@ -9,13 +9,13 @@ export const authStart = ()=>
 }
 
 
-export const authSuccess = (token,userId)=>
+export const authSuccess = (token,userId,isAdmin)=>
 {
     return {
         type:actionTypes.AUTH_SUCCESS,
         idToken:token,
         userId:userId,
-        
+        isAdmin:isAdmin
     }
 }
 
@@ -72,7 +72,6 @@ export const auth = (email,password,login,history)=>
         .then(res=>{
             console.log(res)
 
-           
 
             //Setting the Token in the Local Storage
             localStorage.setItem('token',res.data.token);
@@ -80,10 +79,10 @@ export const auth = (email,password,login,history)=>
             //localStorage.setItem('expirationDate',expirationDate)
             localStorage.setItem('userId',res.data.userId);
 
+            let isAdmin = res.data.isAdmin ? true : false
+            localStorage.setItem('isAdmin',isAdmin);
 
-            
-            dispatch(authSuccess(res.data.token,res.data.userId,res.data.userData));
-            console.log(res.data.user)
+            dispatch(authSuccess(res.data.token,res.data.userId,isAdmin));
             history.push('/')
             //dispatch(checkAuthTimeout(res.data.expiresIn))
         })
@@ -113,7 +112,9 @@ export const authCheckState = ()=>
         else
         {
                 const userId = localStorage.getItem('userId')
-                dispatch(authSuccess(token,userId)) 
+                let isAdmin = localStorage.getItem('isAdmin')
+                let ans = isAdmin==='true'?true:false
+                dispatch(authSuccess(token,userId,ans)) 
         }
                
 

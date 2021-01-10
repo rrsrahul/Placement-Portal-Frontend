@@ -5,7 +5,8 @@ const initialState = {
     userId:null,
     error:null,
     loading:false,
-    userData:null
+    userData:null,
+    isAdmin:null
 
 }
 
@@ -19,11 +20,12 @@ const reducer = (state=initialState,action)=>
                 loading:true
             }
         case actionTypes.AUTH_SUCCESS:
-            console.log(action.userData)
+            console.log(action.isAdmin)
                 return {
                     ...state,
                     token:action.idToken,
                     userId:action.userId,
+                    isAdmin:action.isAdmin,
                     error:null,
                     loading:false
                 }
@@ -40,7 +42,8 @@ const reducer = (state=initialState,action)=>
             return {
                 ...state,
                 token:null,
-                userId:null
+                userId:null,
+                isAdmin:false
             }
         case actionTypes.GET_USERDATASUCCESS:
             return {
