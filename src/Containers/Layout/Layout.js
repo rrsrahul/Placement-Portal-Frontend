@@ -8,7 +8,7 @@ class Layout extends Component{
     {
         return (
             <React.Fragment>
-                <Toolbar isAuth={this.props.isAuth}/>
+                <Toolbar isAuth={this.props.isAuth} isAdmin={this.props.isAdmin}/>
                 <main className={classes.Content}> {this.props.children}</main>
              </React.Fragment>
         )

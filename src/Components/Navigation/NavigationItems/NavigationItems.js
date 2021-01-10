@@ -10,13 +10,23 @@ const navigationItems = (props)=>
 
     if(props.isAuth)
     {
-        auth=(<React.Fragment>
-            <NavigationItem link="/schedule">Schedule</NavigationItem>
-            <NavigationItem link="/addCompany"> Add Company</NavigationItem>
-            <NavigationItem link="/user">Profile</NavigationItem>
-            <NavigationItem link="/logout">Logout</NavigationItem>
-            
-            </React.Fragment>)
+        if(props.isAdmin)
+        {   
+            auth=(<React.Fragment>
+                <NavigationItem link="/schedule">Schedule</NavigationItem>
+                <NavigationItem link="/addCompany"> Add Company</NavigationItem>
+                <NavigationItem link="/logout">Logout</NavigationItem>
+                </React.Fragment>)
+        }
+        else
+        {
+            auth=(<React.Fragment>
+                <NavigationItem link="/schedule">Schedule</NavigationItem>
+                <NavigationItem link="/user">Profile</NavigationItem>
+                <NavigationItem link="/logout">Logout</NavigationItem>
+                </React.Fragment>)
+        }
+       
     }
     else
     {

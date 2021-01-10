@@ -25,6 +25,7 @@ function App(props) {
   const dispatch = useDispatch();
   let t = useSelector(state =>state.auth.token)
   let userId = useSelector(state =>state.auth.userId)
+  let isAdmin = useSelector(state =>state.auth.isAdmin)
   useEffect(() => {
     console.log('use Effect')
     dispatch(actions.getCompanies())
@@ -63,22 +64,36 @@ function App(props) {
 
   if(token!=null)
   {
-   routes = (
 
-         <Switch>
-          <Route path='/schedule' component={Schedule}/>
-          <Route path='/addCompany' component={CompanyData}/>
-          <Route path='/company' component={CompanyInfo}/>
-          <Route path='/user' component={UserData}/>
-          <Route path='/logout' component={Logout}/>
-          <Route path='/' exact component={CompanyList}/>
-          </Switch>
+    let aRoutes = null;
+    console.log(isAdmin);
+    if(isAdmin)
+    {
+      aRoutes = ( <Switch>
+      <Route path='/schedule' component={Schedule}/>
+      <Route path='/addCompany' component={CompanyData}/>
+      <Route path='/company' component={CompanyInfo}/>
+      <Route path='/logout' component={Logout}/>
+      <Route path='/' exact component={CompanyList}/>
+      </Switch>)
+    }
+    else{
+      aRoutes = (
+        <Switch>
+        <Route path='/schedule' component={Schedule}/>
+        <Route path='/company' component={CompanyInfo}/>
+        <Route path='/user' component={UserData}/>
+        <Route path='/logout' component={Logout}/>
+        <Route path='/' exact component={CompanyList}/>
+        </Switch>
+      )
 
-    )
+    }
+   routes = (aRoutes)
   }
   return (
     <div className='App'>
-      <Layout isAuth={token!=null}>
+      <Layout isAuth={token!=null} isAdmin={isAdmin}>
         {routes}
       </Layout>
     </div>
