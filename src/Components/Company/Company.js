@@ -7,11 +7,11 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import bmsLogo from '../../assets/images/bmsLogo.jpg'
+import jobLogo from '../../assets/images/jobLogo.png'
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 300,
   },
 });
 
@@ -44,7 +44,7 @@ export default function ImgMediaCard(props) {
           alt={props.Name}
           max-width='100%'
           max-height='100%'
-          image={bmsLogo}
+          image={jobLogo}
           title="Contemplative Reptile"
         />
         <CardContent>
