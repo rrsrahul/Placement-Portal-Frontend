@@ -12,6 +12,9 @@ import * as actions from '../../store/actions/index';
 class CompanyList extends Component
 {
 
+    state = {
+        value:'date'
+    }
     onApplyHandler = (company)=>
     {
        
@@ -39,6 +42,16 @@ class CompanyList extends Component
            id:this.props.userId
        }
             this.props.onWithdraw(applyData)
+    }
+
+
+    inputChangedHandler = (event)=>{
+
+        this.props.onInputChanged(event.target.value)
+        this.setState({value:event.target.value})
+        console.log('Hello')
+
+
     }
 
     render()
@@ -76,7 +89,7 @@ class CompanyList extends Component
             </div>)
             
         })
-        
+
         return (
             <div >            
                 <div style={{marginLeft: "10%",maxWidth: "350px", display: "flex", flexDirection: "row"}}>
@@ -88,8 +101,8 @@ class CompanyList extends Component
                             {value:'eligibility',displayValue:'Eligibility'},
                             {value:'ctc',displayValue:'CTC'},
                         ]}} 
-                        value={"Date"}
-                        changed={ (event)=> {} }
+                        value={this.state.value}
+                        changed={ (event)=> { this.inputChangedHandler(event)} }
                      />
                 </div>
                 <div className={classes.row}>
@@ -116,7 +129,8 @@ const mapDispatchToProps = dispatch=>
 {
     return{
         onApply: (data)=>{ dispatch(actions.onApply(data))},
-        onWithdraw: (data)=>{dispatch(actions.onWithdraw(data))}
+        onWithdraw: (data)=>{dispatch(actions.onWithdraw(data))},
+        onInputChanged: (value) =>{dispatch(actions.sortCompanies(value))}
     } 
 }
 

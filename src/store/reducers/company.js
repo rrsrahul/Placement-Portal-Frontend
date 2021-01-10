@@ -28,6 +28,28 @@ const reducer = (state = initialState,action) =>
                 loading:false,
                 err:null
             }
+        case actionTypes.COMPANIES_SORT:
+            let newComp=[]
+            if(action.value==='eligibility')
+            newComp = state.companies.sort((compA,compB) => {
+                return (compA.eligibility - compB.eligibility)
+            })
+            else if(action.value ==='ctc')
+            {
+                newComp = state.companies.sort((compA,compB)=>{
+                    return (compA.ctc - compB.ctc)
+                })
+            }
+            else
+            {
+                newComp = state.companies.sort((compA,compB)=>{
+                    return (new Date(compA.date)-new Date(compB.date))
+                })
+            }
+            return {
+                ...state,
+                companies:[...newComp]
+            }
         default:
             return state
     }

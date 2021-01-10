@@ -49,3 +49,11 @@ export const getCompanies = ()=>
                 })
     }
 }
+
+export const sortCompanies = (value)=>{
+    return {
+        type:actionTypes.COMPANIES_SORT,
+        value:value
+    }
+
+}

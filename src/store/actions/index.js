@@ -6,7 +6,8 @@ export {
 } from './auth'
 
 export {
-getCompanies
+getCompanies,
+sortCompanies
 } from './company'
 
 export {
