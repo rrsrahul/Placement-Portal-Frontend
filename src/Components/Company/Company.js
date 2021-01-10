@@ -65,6 +65,7 @@ export default function ImgMediaCard(props) {
         <Button size="small" color="primary" onClick={props.learnMore}>
           Learn More
         </Button>
+        
       </CardActions>
     </Card>
   );

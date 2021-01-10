@@ -69,6 +69,8 @@ class CompanyInfo extends Component {
     return (
       <div style={{paddingTop: 50}}>
         <h2 style={{textAlign: "center", margin: "auto", marginBottom: "50px"}}>{this.state.company.name}</h2>
+        <a rel="noopener noreferrer" href="localhost:8080/apply/company?name=Amazon&position=SDET" target="_blank">Link Here</a>
+       
         <div style={{ display: "flex", flexDirection: "row" }}>
           <div style={{ width: "600px", margin: "auto", marginRight: 0}}>
             <Chrono
