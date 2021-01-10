@@ -46,7 +46,7 @@ export const onApply = (applyData)=>
             })
             .catch(err=>
                 {
-                    dispatch(applyFail(err))
+                    dispatch(applyFail(err.response))
                     console.log(err)
                 }
                 
@@ -88,8 +88,8 @@ export const onWithdraw = (applyData)=>
             })
             .catch(err=>
                 {
-                    dispatch(withdrawFailed(err))
-                    console.log(err)
+                    dispatch(withdrawFailed(err.response))
+                    console.log(err.response)
                 }
                 
             )

@@ -45,7 +45,7 @@ export const getCompanies = ()=>
         .catch(err=>
                 {
                     console.log(err)
-                    dispatch(getCompFailed(err))
+                    dispatch(getCompFailed(err.response))
                 })
     }
 }

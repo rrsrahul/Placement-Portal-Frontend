@@ -90,7 +90,7 @@ export const auth = (email,password,login,history)=>
         .catch(err=>
         {
            
-           dispatch(authFailed(err));
+           dispatch(authFailed(err.response));
         })
     }
 
@@ -146,7 +146,7 @@ export const getUser = (userId)=>{
                 dispatch(getUserSuccess(res.data))
             })
             .catch(err=>{
-                dispatch(getUserFailed(err))
+                dispatch(getUserFailed(err.response))
             })
     }
 
