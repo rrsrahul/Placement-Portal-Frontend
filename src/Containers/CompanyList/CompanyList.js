@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Company from '../../Components/Company/Company';
 import classes from './CompanyList.module.css'
+import Input from '../../Components/UI/Input/Input';
 //import Logo from '../../Components/Logo/Logo'
 
 import * as actions from '../../store/actions/index';
@@ -77,12 +78,23 @@ class CompanyList extends Component
         })
         
         return (
-            <div >
-
-                <div className={classes.row}>
-                {companies}
+            <div >            
+                <div style={{marginLeft: "10%",maxWidth: "350px", display: "flex", flexDirection: "row"}}>
+                    <label style={{paddingTop: "30px", marginRight: "10px", fontSize:20}}>Sort by  </label>
+                    <Input
+                        elementType={'select'} 
+                        elementConfig={{options:[
+                            {value:'date',displayValue:'Date'},
+                            {value:'eligibility',displayValue:'Eligibility'},
+                            {value:'ctc',displayValue:'CTC'},
+                        ]}} 
+                        value={"Date"}
+                        changed={ (event)=> {} }
+                     />
                 </div>
-                
+                <div className={classes.row}>
+                    {companies}
+                </div>                
             </div>
         )
     }
