@@ -24,6 +24,11 @@ class CompanyInfo extends Component {
 
 
   render() {
+    let dateObj = new Date(this.state.company.date);
+           let month = dateObj.getUTCMonth() + 1; //months from 1-12
+            let day = dateObj.getUTCDate();
+            let year = dateObj.getUTCFullYear();
+    let dateString = day + "/" + month + "/" +year ;
     let itemsLeft = [
       {
         title: "Job Description",
@@ -51,13 +56,8 @@ class CompanyInfo extends Component {
         cardSubtitle: this.state.company.eligibility,
       },
       {
-        title: "Test Data",
-        cardTitle:this.state.company.date,
-      },
-      {
-        title: "Cost to Company",
-        cardTitle: "Full time",
-        cardSubtitle: "10 LPA",
+        title: "Test Date",
+        cardTitle:dateString,
       },
       {
         title: "Additional Infomation",

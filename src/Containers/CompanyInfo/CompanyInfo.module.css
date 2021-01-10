@@ -1,0 +1,11 @@
+.Acc{
+    max-width: 100%;
+    background-color: red;
+}
+
+.button{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}

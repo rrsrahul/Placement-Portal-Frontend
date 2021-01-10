@@ -48,13 +48,13 @@ class CompanyList extends Component
 
         this.props.onInputChanged(event.target.value)
         this.setState({value:event.target.value})
-        //console.log('Hello')
+        
 
 
     }
 
     onDeleteHandler = (company)=>{
-        console.log('ONDELETEHANDLER')
+        //console.log('ONDELETEHANDLER')
             this.props.onCompanyDelete(company)
     }
 
