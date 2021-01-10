@@ -5,7 +5,6 @@ import Company from '../../Components/Company/Company';
 import classes from './CompanyList.module.css'
 import Input from '../../Components/UI/Input/Input';
 //import Logo from '../../Components/Logo/Logo'
-
 import * as actions from '../../store/actions/index';
 
 
@@ -49,9 +48,14 @@ class CompanyList extends Component
 
         this.props.onInputChanged(event.target.value)
         this.setState({value:event.target.value})
-        console.log('Hello')
+        //console.log('Hello')
 
 
+    }
+
+    onDeleteHandler = (company)=>{
+        console.log('ONDELETEHANDLER')
+            this.props.onCompanyDelete(company)
     }
 
     render()
@@ -83,6 +87,7 @@ class CompanyList extends Component
                  date={newdate}
                  clicked={()=>{this.onApplyHandler(company)}}
                  isApplied={isApplied}
+                 isDelete={()=>{this.onDeleteHandler(company)}}
                  isWithdraw={()=>{ this.onWithdrawHandler(company) }}
                  learnMore ={()=>{this.onLearnMoreHandler(company)}}
                 />
@@ -130,7 +135,8 @@ const mapDispatchToProps = dispatch=>
     return{
         onApply: (data)=>{ dispatch(actions.onApply(data))},
         onWithdraw: (data)=>{dispatch(actions.onWithdraw(data))},
-        onInputChanged: (value) =>{dispatch(actions.sortCompanies(value))}
+        onInputChanged: (value) =>{dispatch(actions.sortCompanies(value))},
+        onCompanyDelete: (value)=>{dispatch(actions.companyDelete(value))}
     } 
 }
 

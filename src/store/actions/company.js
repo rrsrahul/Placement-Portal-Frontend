@@ -57,3 +57,31 @@ export const sortCompanies = (value)=>{
     }
 
 }
+
+export const companyDeleteSuccess = (company)=>{
+    return {
+        type:actionTypes.COMPANY_DELETE_SUCCESS,
+        company:company
+    }
+}
+
+export const companyDeleteFailed = (err)=>{
+    return {
+        type:actionTypes.COMPANY_DELETE_FAIL,
+        err:err
+    }
+}
+
+export const companyDelete = (company)=>{
+    return dispatch =>{
+        axios.delete('/companies/'+company._id)
+        .then(res =>{
+            console.log(res.data);
+            dispatch(companyDeleteSuccess(company))
+
+        })
+        .catch(err=>{
+            dispatch(companyDeleteFailed(err.response));
+        })
+    }
+}

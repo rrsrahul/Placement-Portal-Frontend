@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import jobLogo from '../../assets/images/jobLogo.png'
+import {useSelector} from 'react-redux'
 
 const useStyles = makeStyles({
   root: {
@@ -20,8 +21,11 @@ const useStyles = makeStyles({
 
 export default function ImgMediaCard(props) {
   const classes = useStyles();
-
+  const isAdmin = useSelector(state => state.auth.isAdmin);
   let applied = null;
+  let del = (<Button size="small" color="primary" onClick={props.isDelete} >
+  Delete
+ </Button>)
   if(props.isApplied)
   {
     applied = (<Button size="small" color="primary" onClick={props.isWithdraw} >
@@ -34,6 +38,8 @@ export default function ImgMediaCard(props) {
     Apply
    </Button>)
   }
+  
+ 
 
 
   return (
@@ -61,7 +67,7 @@ export default function ImgMediaCard(props) {
       </CardActionArea>
       <CardActions>
         
-        {applied}
+        {isAdmin?del:applied}
         <Button size="small" color="primary" onClick={props.learnMore}>
           Learn More
         </Button>

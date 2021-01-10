@@ -50,6 +50,20 @@ const reducer = (state = initialState,action) =>
                 ...state,
                 companies:[...newComp]
             }
+        case actionTypes.COMPANY_DELETE_SUCCESS:
+            const updatedCompanies = state.companies.filter(company=>{
+                return company._id !==action.company._id
+            })
+            return {
+                ...state,
+                companies:updatedCompanies,
+                err:null
+            }
+        case actionTypes.COMPANY_DELETE_FAIL:
+            return {
+                ...state,
+                err:action.err
+            }
         default:
             return state
     }
