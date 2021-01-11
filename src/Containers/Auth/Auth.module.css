@@ -7,3 +7,11 @@
     border-radius: 15px;
     transition: all .3s;
   }
+
+  .error{
+    color: #D8000C;
+    background-color: #FFBABA;
+    border:1px solid red;
+    text-align:center
+
+  }

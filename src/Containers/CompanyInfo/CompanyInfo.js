@@ -60,6 +60,10 @@ class CompanyInfo extends Component {
         cardTitle:dateString,
       },
       {
+        title: "No of Days working for internship/ summer internship",
+        cardTitle:"5 days a week",
+      },
+      {
         title: "Additional Infomation",
         cardTitle: this.state.company.additionalInformation,
       },

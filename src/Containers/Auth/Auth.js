@@ -43,20 +43,21 @@ class Auth extends Component {
         confirmPassword:{
             elementType:'input',
             elementConfig:{
-                type:'Confrim Password',
+                type:'Password',
                 placeholder:'Confrim Password'
             },
             value:'',
             validation:
             {
                 required:true,
-                minLength:7
+                check:true
             },
             valid:false,
             touched:false
         }
     },
-        Login: true
+        Login: true,
+        
     }
 
     checkValidity(value,rules)
@@ -84,6 +85,10 @@ class Auth extends Component {
                 const pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
                 isValid = pattern.test(value) && isValid;
             }
+            if(rules.check)
+            {
+                isValid = (value === this.state.controls.password.value)?true:false
+            }
       
         return isValid
     }
@@ -100,10 +105,11 @@ class Auth extends Component {
                 touched:true
             }
         }
+        
+    
+            this.setState({controls:updatedControls})
+        
 
-        this.setState({
-            controls:updatedControls
-        })
     }
 
     submitHandler = (event)=>
@@ -186,14 +192,21 @@ class Auth extends Component {
         {
             form = <Spinner/>
         }
-
+        if(this.props.error)
+        {
+            errorMessage = (<div className={classes.error}>{this.props.error.data.message}</div>)
+        }
         return (
             <div className={classes.Auth}>
                 <h3>{this.state.Login?'Log in':'Sign up'}</h3>
                 {errorMessage}
                 <form onSubmit={(event)=>{this.submitHandler(event)}}>
                 {form}
-                <Button btnType='Success' className="btn btn-dark btn-lg btn-block">{this.state.Login?'Sign in':'Sign up'}</Button>
+                <Button btnType='Success' 
+                className="btn btn-dark btn-lg btn-block"
+                >
+                    {this.state.Login?'Sign in':'Sign up' }
+                 </Button>
                 </form>
                 {this.state.Login && <Button btnType='Danger' className="btn btn-dark btn-lg btn-block" clicked={this.switchLoginHandler}>Create an Account</Button>}
                 {!this.state.Login && <p onClick={this.switchLoginHandler} className="forgot-password text-right">
@@ -209,6 +222,7 @@ const mapStateToProps = state =>
 {
     return {
         loading:state.auth.loading,
+        error:state.auth.error
 
     }
 }

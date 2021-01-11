@@ -202,12 +202,17 @@ class CompanyData extends Component {
     submitHandler = (event)=>
     {
         event.preventDefault();
+
+        let date = (this.state.controls.date.value).split('/');
+        let dateString = date[2]+ '-' + date[1] + '-'+date[0]
+        //console.log(dateString)
+
         const compData = {
             name:this.state.controls.name.value,
             eligibility:this.state.controls.cutoff.value,
             position:this.state.controls.position.value,
             ctc:this.state.controls.ctc.value,
-            date:this.state.controls.date.value,
+            date:dateString,
             jd:this.state.controls.jobDescription.value,
             internship:this.state.controls.internship.value,
             jobLocation:this.state.controls.jobLocation.value,

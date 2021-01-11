@@ -76,7 +76,7 @@ export const companyDelete = (company)=>{
     return dispatch =>{
         axios.delete('/companies/'+company._id)
         .then(res =>{
-            console.log(res.data);
+            console.log(company);
             dispatch(companyDeleteSuccess(company))
 
         })

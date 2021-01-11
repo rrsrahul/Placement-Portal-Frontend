@@ -54,12 +54,13 @@ export const auth = (email,password,login,history)=>
             axios.post(url,authData)
             .then(res=>{
                 dispatch(authSuccess(res.data.token,res.data.userId));
+                history.replace('/')
                 
             })
             .catch(err=>
                 {
                     
-                    dispatch(authFailed(err));
+                    dispatch(authFailed(err.response));
                 })
         }
         
