@@ -25,12 +25,11 @@ const reducer = (state=initialState,action)=>
         case actionTypes.ON_APPLY_FAILED:
             return{
                 ...state,
-                applied:[],
                 err:action.err
             }
         case actionTypes.ON_WITHDRAW_SUCCESS:
             const updatedApplied = state.applied.filter(comp=>{
-                return comp.name !== action.applyData.compName
+                return comp.name !== action.applyData.compName && comp.position!==action.applyData.position
             })
             
             return {

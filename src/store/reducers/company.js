@@ -37,7 +37,7 @@ const reducer = (state = initialState,action) =>
             else if(action.value ==='ctc')
             {
                 newComp = state.companies.sort((compA,compB)=>{
-                    return (compA.ctc - compB.ctc)
+                    return (compA.ctc.split(' ')[0] - compB.ctc.split(' ')[0])
                 })
             }
             else

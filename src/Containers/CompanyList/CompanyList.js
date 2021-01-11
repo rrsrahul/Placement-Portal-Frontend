@@ -60,7 +60,12 @@ class CompanyList extends Component
 
     render()
     {
+        let errorMessage = null
 
+        if(this.props.error)
+        {
+            errorMessage = (<div className={classes.error}>{this.props.error.data.message}</div>)
+        }
         let companies = this.props.companies.map( (company,index) =>{
             let dateObj = new Date(company.date);
            let month = dateObj.getUTCMonth() + 1; //months from 1-12
@@ -70,7 +75,7 @@ class CompanyList extends Component
             if(this.props.applied!==null)
             {
                this.props.applied.forEach(element => {
-                   if(element.name === company.name)
+                   if(element.name === company.name && element.position === company.position)
                    {
                        isApplied=true
                    }
@@ -110,6 +115,7 @@ class CompanyList extends Component
                         changed={ (event)=> { this.inputChangedHandler(event)} }
                      />
                 </div>
+                {errorMessage}
                 <div className={classes.row}>
                     {companies}
                 </div>                
@@ -126,7 +132,8 @@ const mapStateToProps = state =>
     return {
         companies: state.comp.companies,
         userId: state.auth.userId,
-        applied: state.apply.applied
+        applied: state.apply.applied,
+        error:state.apply.err
     }
 }
 

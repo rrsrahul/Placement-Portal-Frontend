@@ -7,6 +7,15 @@
 
   .comp {
     margin: 20px;
+    box-sizing: border-box;
     border: 2px solid#1f5cb8;
     border-radius: 5px;
+  }
+
+  .error{
+    color: #D8000C;
+    background-color: #FFBABA;
+    border:1px solid red;
+    text-align:center
+
   }

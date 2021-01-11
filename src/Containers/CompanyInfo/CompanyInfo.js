@@ -72,7 +72,12 @@ class CompanyInfo extends Component {
     return (
       <div style={{paddingTop: 50}}>
         <h2 style={{textAlign: "center", margin: "auto", marginBottom: "50px"}}>{this.state.company.name}</h2>
-        <a style={{display: "flex", justifyContent: "center", margin: "auto", marginBottom: "50px", maxWidth: "250px"}} className="btn btn-primary" rel="noopener noreferrer" href="localhost:8080/apply/company?name=Amazon&position=SDET" target="_blank">Download Applicants List</a>
+        <a style={{display: "flex", justifyContent: "center", margin: "auto", marginBottom: "50px", maxWidth: "250px"}}
+         className="btn btn-primary" rel="noopener noreferrer"
+          href={"localhost:8080/apply/company?name="+this.state.company.name+"&position="+this.state.company.position }
+          target="_blank">
+          Download Applicants List
+          </a>
        
         <div style={{ display: "flex", flexDirection: "row" }}>
           <div style={{ width: "600px", margin: "auto", marginRight: 0}}>
@@ -107,7 +112,7 @@ class CompanyInfo extends Component {
 
 const mapStateToProps = state =>{
  return {
-companies:state.comp.companies
+companies:state.comp.companies,
  }
 }
 
