@@ -72,6 +72,13 @@ export const companyDeleteFailed = (err)=>{
     }
 }
 
+export const companySearch = (value)=>{
+    return {
+        type:actionTypes.COMPANY_SEARCH,
+        value:value
+    }
+}
+
 export const companyDelete = (company)=>{
     return dispatch =>{
         axios.delete('/companies/'+company._id)

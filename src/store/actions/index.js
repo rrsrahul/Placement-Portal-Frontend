@@ -8,7 +8,9 @@ export {
 export {
 getCompanies,
 sortCompanies,
-companyDelete
+companyDelete,
+companySearch
+
 } from './company'
 
 export {

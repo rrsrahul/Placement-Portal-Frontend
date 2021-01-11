@@ -12,7 +12,8 @@ class CompanyList extends Component
 {
 
     state = {
-        value:'date'
+        value:'date',
+        search:''
     }
     onApplyHandler = (company)=>
     {
@@ -56,6 +57,12 @@ class CompanyList extends Component
     onDeleteHandler = (company)=>{
         //console.log('ONDELETEHANDLER')
             this.props.onCompanyDelete(company)
+    }
+
+    onSearchChangeHandler = (event)=>{
+        
+        this.setState({search:event.target.value})
+        this.props.onCompanySearch(event.target.value)
     }
 
     render()
@@ -121,7 +128,8 @@ class CompanyList extends Component
                             type:'',
                             placeholder:''
                         }} 
-                        changed={ (event)=> { this.inputChangedHandler(event)} }
+                        value = {this.state.search}
+                        changed={ (event)=> { this.onSearchChangeHandler(event)} }
                      />
                 </div>
                 {errorMessage}
@@ -152,7 +160,8 @@ const mapDispatchToProps = dispatch=>
         onApply: (data)=>{ dispatch(actions.onApply(data))},
         onWithdraw: (data)=>{dispatch(actions.onWithdraw(data))},
         onInputChanged: (value) =>{dispatch(actions.sortCompanies(value))},
-        onCompanyDelete: (value)=>{dispatch(actions.companyDelete(value))}
+        onCompanyDelete: (value)=>{dispatch(actions.companyDelete(value))},
+        onCompanySearch: (value)=>{dispatch(actions.companySearch(value))}
     } 
 }
 

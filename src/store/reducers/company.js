@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actionTypes'
+import stringSimilarity from 'string-similarity';
 
 const initialState = {
     companies: [],
@@ -30,10 +31,10 @@ const reducer = (state = initialState,action) =>
             }
         case actionTypes.COMPANIES_SORT:
             let newComp=[]
-            if(action.value==='eligibility')
+            if(action.value==='eligibility'){
             newComp = state.companies.sort((compA,compB) => {
                 return (compA.eligibility - compB.eligibility)
-            })
+            })}
             else if(action.value ==='ctc')
             {
                 newComp = state.companies.sort((compA,compB)=>{
@@ -49,6 +50,17 @@ const reducer = (state = initialState,action) =>
             return {
                 ...state,
                 companies:[...newComp]
+            }
+        case actionTypes.COMPANY_SEARCH:
+            let newCompanies =[];
+            newCompanies = state.companies.sort((compA,compB)=>{
+                let valA = stringSimilarity.compareTwoStrings(compA.position,action.value)
+                let valB = stringSimilarity.compareTwoStrings(compB.position,action.value)
+                return (valB-valA)
+            })
+            return {
+                ...state,
+                companies:[...newCompanies]
             }
         case actionTypes.COMPANY_DELETE_SUCCESS:
             const updatedCompanies = state.companies.filter(company=>{

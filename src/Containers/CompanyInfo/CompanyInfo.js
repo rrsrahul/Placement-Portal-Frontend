@@ -78,6 +78,12 @@ class CompanyInfo extends Component {
           target="_blank">
           Download Applicants List
           </a>
+          <a style={{display: "flex", justifyContent: "center", margin: "auto", marginBottom: "50px", maxWidth: "250px"}}
+         className="btn btn-primary" rel="noopener noreferrer"
+          href="https://drive.google.com/drive/folders/1bcuEsAnA6J7c6ktCwb9E6ZIEHZsfXJRr?usp=sharing_eip&ts=5efdd813"
+          target="_blank">
+            Get Study Material
+          </a>
        
         <div style={{ display: "flex", flexDirection: "row" }}>
           <div style={{ width: "600px", margin: "auto", marginRight: 0}}>
