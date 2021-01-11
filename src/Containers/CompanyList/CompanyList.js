@@ -102,7 +102,7 @@ class CompanyList extends Component
 
         return (
             <div >            
-                <div style={{marginLeft: "10%",maxWidth: "350px", display: "flex", flexDirection: "row"}}>
+                <div style={{marginLeft: "10%",maxWidth: "1000px", display: "flex", flexDirection: "row"}}>
                     <label style={{paddingTop: "30px", marginRight: "10px", fontSize:20}}>Sort by  </label>
                     <Input
                         elementType={'select'} 
@@ -112,6 +112,15 @@ class CompanyList extends Component
                             {value:'ctc',displayValue:'CTC'},
                         ]}} 
                         value={this.state.value}
+                        changed={ (event)=> { this.inputChangedHandler(event)} }
+                     />
+                    <label style={{paddingTop: "30px",marginLeft:"100px", marginRight: "10px", fontSize:20}}>Search</label>
+                    <Input
+                        elementType={'input'} 
+                        elementConfig={{
+                            type:'',
+                            placeholder:''
+                        }} 
                         changed={ (event)=> { this.inputChangedHandler(event)} }
                      />
                 </div>
