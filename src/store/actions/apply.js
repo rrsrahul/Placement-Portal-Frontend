@@ -30,12 +30,12 @@ export const onApply = (applyData)=>
     
     return dispatch =>
     {
-        axios.post('http://localhost:8080/apply',applyData)
+        axios.post('https://whispering-anchorage-84466.herokuapp.com/apply',applyData)
         .then(res =>
             {
                 console.log(res.data)
                 console.log('Applied ')
-                axios.get('http://localhost:8080/apply/student/?userId='+applyData.id)
+                axios.get('https://whispering-anchorage-84466.herokuapp.com/apply/student/?userId='+applyData.id)
                 .then(res =>
                 {
                         const name = applyData.compName;
@@ -79,7 +79,7 @@ export const onWithdraw = (applyData)=>
     {
         
         console.log(applyData)
-        axios.post('http://localhost:8080/apply/withdraw',applyData)
+        axios.post('https://whispering-anchorage-84466.herokuapp.com/apply/withdraw',applyData)
         .then(res =>
             {
                console.log('Removed')

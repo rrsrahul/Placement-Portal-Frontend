@@ -306,7 +306,7 @@ class UserData extends Component {
 
 
 
-        axios.post('http://localhost:8080/students/'+this.props.userId,formData)
+        axios.post('https://whispering-anchorage-84466.herokuapp.com/students/'+this.props.userId,formData)
         .then( res =>
         {
            console.log(res.data);
@@ -364,7 +364,7 @@ class UserData extends Component {
                      
                 )
             })
-            const image = 'http://localhost:8080/'+this.props.userData.imageUrl
+            const image = 'https://whispering-anchorage-84466.herokuapp.com/'+this.props.userData.imageUrl
         return (
             <div className={classes.Auth} >
                 <form onSubmit={(event)=>{this.submitHandler(event)}}>

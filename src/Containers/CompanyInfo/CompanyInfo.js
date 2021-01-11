@@ -74,7 +74,7 @@ class CompanyInfo extends Component {
         <h2 style={{textAlign: "center", margin: "auto", marginBottom: "50px"}}>{this.state.company.name}</h2>
         <a style={{display: "flex", justifyContent: "center", margin: "auto", marginBottom: "50px", maxWidth: "250px"}}
          className="btn btn-primary" rel="noopener noreferrer"
-          href={"localhost:8080/apply/company?name="+this.state.company.name+"&position="+this.state.company.position }
+          href={"https://whispering-anchorage-84466.herokuapp.com/apply/company?name="+this.state.company.name+"&position="+this.state.company.position }
           target="_blank">
           Download Applicants List
           </a>

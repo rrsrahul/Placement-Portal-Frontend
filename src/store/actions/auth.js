@@ -48,7 +48,7 @@ export const auth = (email,password,login,history)=>
             email:email,
             password:password,
         }
-        let url = 'http://localhost:8080/admin/signup';
+        let url = 'https://whispering-anchorage-84466.herokuapp.com/admin/signup';
         if(!login)
         {
             axios.post(url,authData)
@@ -67,7 +67,7 @@ export const auth = (email,password,login,history)=>
         
     if(login)
     {
-            url='http://localhost:8080/admin/login';
+            url='https://whispering-anchorage-84466.herokuapp.com/admin/login';
         
         axios.post(url,authData)
         .then(res=>{
@@ -143,7 +143,7 @@ export const getUserFailed = (err)=>{
 
 export const getUser = (userId)=>{
     return dispatch =>{
-        axios.get('http://localhost:8080/students/'+userId)
+        axios.get('https://whispering-anchorage-84466.herokuapp.com/students/'+userId)
             .then(res=>{
                 dispatch(getUserSuccess(res.data))
             })
