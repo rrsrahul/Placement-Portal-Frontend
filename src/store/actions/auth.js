@@ -54,7 +54,7 @@ export const auth = (email,password,login,history)=>
             axios.post(url,authData)
             .then(res=>{
                 dispatch(authSuccess(res.data.token,res.data.userId));
-                history.replace('/')
+                history.replace('/welcome')
                 
             })
             .catch(err=>
@@ -84,7 +84,7 @@ export const auth = (email,password,login,history)=>
             localStorage.setItem('isAdmin',isAdmin);
 
             dispatch(authSuccess(res.data.token,res.data.userId,isAdmin));
-            history.push('/')
+            history.push('/welcome')
             //dispatch(checkAuthTimeout(res.data.expiresIn))
         })
         .catch(err=>

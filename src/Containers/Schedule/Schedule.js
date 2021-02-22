@@ -51,7 +51,7 @@ const mapStateToProps = state =>{
 }
 const mapDispatchToProps = dispatch =>{
   return {
-    onGetComps: dispatch(actions.getCompanies())
+    onGetComps:()=>{ dispatch(actions.getCompanies())}
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Schedule);
