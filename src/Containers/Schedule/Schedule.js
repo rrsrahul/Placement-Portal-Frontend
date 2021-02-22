@@ -1,8 +1,17 @@
 import React, { Component } from "react";
 import { Chrono } from "react-chrono";
 import { connect } from "react-redux";
+import * as actions from '../../store/actions/company'
 
 class Schedule extends Component {
+
+
+  componentDidMount()
+  {
+    this.props.onGetComps();
+  }
+
+
   render() {
     let comps = this.props.companies.map(company =>{
       let dateObj = new Date(company.date);
@@ -40,4 +49,9 @@ const mapStateToProps = state =>{
     companies:state.comp.companies
   }
 }
-export default connect(mapStateToProps)(Schedule);
+const mapDispatchToProps = dispatch =>{
+  return {
+    onGetComps:()=>{ dispatch(actions.getCompanies())}
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Schedule);

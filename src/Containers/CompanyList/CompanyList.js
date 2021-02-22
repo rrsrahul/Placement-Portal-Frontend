@@ -15,6 +15,10 @@ class CompanyList extends Component
         value:'date',
         search:''
     }
+    componentDidMount()
+    {
+       this.props.onGetCompanies();
+    }
     onApplyHandler = (company)=>
     {
        
@@ -50,8 +54,6 @@ class CompanyList extends Component
         this.props.onInputChanged(event.target.value)
         this.setState({value:event.target.value})
         
-
-
     }
 
     onDeleteHandler = (company)=>{
@@ -121,7 +123,7 @@ class CompanyList extends Component
                         value={this.state.value}
                         changed={ (event)=> { this.inputChangedHandler(event)} }
                      />
-                    <label style={{paddingTop: "30px",marginLeft:"100px", marginRight: "10px", fontSize:20}}>Search</label>
+                    <label style={{paddingTop: "30px",marginLeft:"100px", marginRight: "10px", fontSize:20}}>Job Description</label>
                     <Input
                         elementType={'input'} 
                         elementConfig={{
@@ -161,7 +163,8 @@ const mapDispatchToProps = dispatch=>
         onWithdraw: (data)=>{dispatch(actions.onWithdraw(data))},
         onInputChanged: (value) =>{dispatch(actions.sortCompanies(value))},
         onCompanyDelete: (value)=>{dispatch(actions.companyDelete(value))},
-        onCompanySearch: (value)=>{dispatch(actions.companySearch(value))}
+        onCompanySearch: (value)=>{dispatch(actions.companySearch(value))},
+        onGetCompanies: ()=>{dispatch(actions.getCompanies())}
     } 
 }
 

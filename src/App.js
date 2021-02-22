@@ -16,6 +16,7 @@ import UserData from './Containers/Auth/UserData/UserData';
 import Logout from './Containers/Auth/Logout/Logout';
 import CompanyInfo from './Containers/CompanyInfo/CompanyInfo';
 import axios from 'axios';
+import Welcome from './Components/Welcome/Welcome';
 
 
 
@@ -74,6 +75,7 @@ function App(props) {
       <Route path='/addCompany' component={CompanyData}/>
       <Route path='/company' component={CompanyInfo}/>
       <Route path='/logout' component={Logout}/>
+      <Route path='/welcome' component={Welcome}/>
       <Route path='/' exact component={CompanyList}/>
       </Switch>)
     }

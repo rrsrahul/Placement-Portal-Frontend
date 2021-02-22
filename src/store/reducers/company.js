@@ -58,6 +58,9 @@ const reducer = (state = initialState,action) =>
                 let valB = stringSimilarity.compareTwoStrings(compB.position,action.value)
                 return (valB-valA)
             })
+
+        
+
             return {
                 ...state,
                 companies:[...newCompanies]
