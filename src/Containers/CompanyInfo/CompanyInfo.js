@@ -60,7 +60,7 @@ class CompanyInfo extends Component {
         cardTitle:dateString,
       },
       {
-        title: "No of Days working for internship/ summer internship",
+        title: "Summer internship",
         cardTitle:"5 days a week",
       },
       {
@@ -68,22 +68,33 @@ class CompanyInfo extends Component {
         cardTitle: this.state.company.additionalInformation,
       },
     ];
+    let downloadExcel=null;
+      if(this.props.auth)
+      {
+          downloadExcel=(<a style={{display: "flex", justifyContent: "center", margin: "auto", marginBottom: "50px", maxWidth: "250px"}}
+          className="btn btn-primary" rel="noopener noreferrer"
+           href={"localhost:8080/apply/company?name="+this.state.company.name+"&position="+this.state.company.position }
+           target="_blank">
+           Download Applicants List
+           </a>)
+      }
+    let getStudyMaterial = null;
 
+    if(this.props.auth===false)
+    {
+      getStudyMaterial=(<a style={{display: "flex", justifyContent: "center", margin: "auto", marginBottom: "50px", maxWidth: "250px"}}
+      className="btn btn-primary" rel="noopener noreferrer"
+       href="https://drive.google.com/drive/folders/1bcuEsAnA6J7c6ktCwb9E6ZIEHZsfXJRr?usp=sharing_eip&ts=5efdd813"
+       target="_blank">
+         Get Study Material
+       </a>)
+    }
     return (
       <div style={{paddingTop: 50}}>
         <h2 style={{textAlign: "center", margin: "auto", marginBottom: "50px"}}>{this.state.company.name}</h2>
-        <a style={{display: "flex", justifyContent: "center", margin: "auto", marginBottom: "50px", maxWidth: "250px"}}
-         className="btn btn-primary" rel="noopener noreferrer"
-          href={"localhost:8080/apply/company?name="+this.state.company.name+"&position="+this.state.company.position }
-          target="_blank">
-          Download Applicants List
-          </a>
-          <a style={{display: "flex", justifyContent: "center", margin: "auto", marginBottom: "50px", maxWidth: "250px"}}
-         className="btn btn-primary" rel="noopener noreferrer"
-          href="https://drive.google.com/drive/folders/1bcuEsAnA6J7c6ktCwb9E6ZIEHZsfXJRr?usp=sharing_eip&ts=5efdd813"
-          target="_blank">
-            Get Study Material
-          </a>
+        {downloadExcel}
+        {getStudyMaterial}
+          
        
         <div style={{ display: "flex", flexDirection: "row" }}>
           <div style={{ width: "600px", margin: "auto", marginRight: 0}}>
@@ -116,9 +127,11 @@ class CompanyInfo extends Component {
   }
 }
 
+
 const mapStateToProps = state =>{
  return {
 companies:state.comp.companies,
+auth:state.auth.isAdmin
  }
 }
 

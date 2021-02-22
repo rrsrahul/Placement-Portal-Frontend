@@ -36,7 +36,7 @@ const navigationItems = (props)=>
     }
     return (
         <ul className={classes.NavigationItems}>
-           <NavigationItem link="/" >
+           <NavigationItem link="/companies" >
                 Companies
            </NavigationItem>
             {auth}
