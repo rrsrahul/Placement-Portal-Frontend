@@ -35,7 +35,7 @@ export default function ImgMediaCard(props) {
   }
   else
   {
-    applied = (<Button size="small" color="primary" onClick={props.clicked} disabled={props.isApplied?true:false}>
+    applied = (<Button size="small" color="primary" onClick={props.clicked} disabled={!props.login}>
     Apply
    </Button>)
   }

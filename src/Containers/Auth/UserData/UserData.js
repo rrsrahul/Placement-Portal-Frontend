@@ -42,6 +42,37 @@ class UserData extends Component {
                 valid:(this.props.userData.usn?true:''),
                 touched:(this.props.userData.usn?true:'')
             },
+            branch:{
+                elementType:'select',
+                elementConfig:{
+                    options:[
+                        {value:'ISE',displayValue:'Information Science'},
+                        {value:'CSE',displayValue:'Computer Science'},
+                        {value:'EEE',displayValue:'Electrical and Electronics'},
+                        { value: "ECE", displayValue: "Electrical and Communication" },
+                        { value: "TCE", displayValue: "TeleCommunication" },
+                        { value: "CHE", displayValue: "Chemical" },
+                        { value: "MECH", displayValue: "Mechanical" },
+                    ],
+                    type:"Branch"
+                },
+                value:'ISE',
+                valid:true
+            },
+           semester:{
+                elementType:'input',
+                elementConfig:{
+                    type:'Semester',
+                    placeholder:'Enter Semester'
+                },
+                value:(this.props.userData.semester? this.props.userData.semester:''),
+                validation:
+                {
+                    required:true,
+                },
+                valid:(this.props.userData.semester? true:''),
+                touched:(this.props.userData.semester? true:'')
+            },
            gender:{
                 elementType:'select',
                 elementConfig:{
@@ -110,37 +141,7 @@ class UserData extends Component {
                 },
                 valid:(this.props.userData.diplomaPercentage? true:false),
                 touched:(this.props.userData.diplomaPercentage? true:false)
-            },
-            branch:{
-                elementType:'select',
-                elementConfig:{
-                    options:[
-                        {value:'ISE',displayValue:'Information Science'},
-                        {value:'CSE',displayValue:'Computer Science'},
-                        {value:'EEE',displayValue:'Electrical and Electronics'},
-                        { value: "ECE", displayValue: "Electrical and Communication" },
-                        { value: "TCE", displayValue: "TeleCommunication" },
-                        { value: "CHE", displayValue: "Chemical" },
-                        { value: "MECH", displayValue: "Mechanical" },
-                    ]
-                },
-                value:'ISE',
-                valid:true
-            },
-           semester:{
-                elementType:'input',
-                elementConfig:{
-                    type:'Semester',
-                    placeholder:'Enter Semester'
-                },
-                value:(this.props.userData.semester? this.props.userData.semester:''),
-                validation:
-                {
-                    required:true,
-                },
-                valid:(this.props.userData.semester? true:''),
-                touched:(this.props.userData.semester? true:'')
-            },
+            },           
             cgpa:{
                 elementType:'input',
                 elementConfig:{
@@ -183,21 +184,7 @@ class UserData extends Component {
                 valid:(this.props.userData.backlogsCleared? true:false),
                 touched:(this.props.userData.backlogsCleared? true:false)
             },
-            address:{
-                elementType:'textarea',
-                elementConfig:{
-                    type:'Permanent Address',
-                    placeholder:''
-                },
-                value:(this.props.userData.address?this.props.userData.address:''),
-                validation:
-                {
-                    required:true,
-                },
-                valid:(this.props.userData.address?true:false),
-                touched:(this.props.userData.address?true:false)
-            },
-           phoneNo:{
+            phoneNo:{
                 elementType:'input',
                 elementConfig:{
                     type:'Phone Number',
@@ -211,6 +198,20 @@ class UserData extends Component {
                 valid:(this.props.userData.phone? true:false),
                 touched:(this.props.userData.phone? true:false)
             },
+            address:{
+                elementType:'textarea',
+                elementConfig:{
+                    type:'Permanent Address',
+                    placeholder:''
+                },
+                value:(this.props.userData.address?this.props.userData.address:''),
+                validation:
+                {
+                    required:true,
+                },
+                valid:(this.props.userData.address?true:false),
+                touched:(this.props.userData.address?true:false)
+            },         
 
         },
                formIsValid:false,
@@ -364,18 +365,18 @@ class UserData extends Component {
                      
                 )
             })
-            const image = 'https://whispering-anchorage-84466.herokuapp.com/'+this.props.userData.imageUrl
+
         return (
             <div className={classes.Auth} >
                 <form onSubmit={(event)=>{this.submitHandler(event)}}>
                    <div style={{display: "flex", justifyContent:"center",alignItems:"center", marginBottom: 20}}> 
-                    <UserAvatar  size="150" name="Rahul R S" src={image}/> 
+                    <UserAvatar  size="150" name={this.state.controls.name.value}/>
                    </div>
-                   <div style={{maxWidth: "100%", justifyContent: "center", display : "flex"}}>
+                   {/* <div style={{maxWidth: "100%", justifyContent: "center", display : "flex"}}>
                    <label className="btn btn-info btn-sm"> Update Picture
-                   <input type="file" hidden onChange={(event)=>{this.fileChangedHandler(event)}} /> 
+                   <input type="file" hidden onChange={(event)=>{this.fileChangedHandler(event)}}/> 
                    </label>
-                   </div>
+                   </div> */}
 
                 {form}
                 <Button btnType='Success' className="btn btn-dark btn-lg btn-block" disabled={!this.state.formIsValid} > Submit</Button>

@@ -37,7 +37,7 @@ class UserAvatar extends React.Component {
       className
     } = this.props;
 
-    if (!name) throw new Error('UserAvatar requires a name');
+    if (!name) {name = "N A M E"}
 
     const abbr = initials(name);
     size = addPx(size);
