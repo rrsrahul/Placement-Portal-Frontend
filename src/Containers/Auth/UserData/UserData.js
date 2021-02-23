@@ -26,7 +26,8 @@ class UserData extends Component {
                     required:true,
                 },
                 valid:(true),
-                touched:true
+                touched:true,
+                errorMessage:'Name is required'
             },
             usn:{
                 elementType:'input',
@@ -38,9 +39,11 @@ class UserData extends Component {
                 validation:
                 {
                     required:true,
+                    usn:true
                 },
                 valid:(this.props.userData.usn?true:''),
-                touched:(this.props.userData.usn?true:'')
+                touched:(this.props.userData.usn?true:''),
+                errorMessage:'Enter A valid Value for USN'
             },
             branch:{
                 elementType:'select',
@@ -57,7 +60,8 @@ class UserData extends Component {
                     type:"Branch"
                 },
                 value:'ISE',
-                valid:true
+                valid:true,
+                
             },
            semester:{
                 elementType:'input',
@@ -69,9 +73,11 @@ class UserData extends Component {
                 validation:
                 {
                     required:true,
+                    number:true
                 },
                 valid:(this.props.userData.semester? true:''),
-                touched:(this.props.userData.semester? true:'')
+                touched:(this.props.userData.semester? true:''),
+                errorMessage:'Enter a valid Semester'
             },
            gender:{
                 elementType:'select',
@@ -96,9 +102,11 @@ class UserData extends Component {
                 validation:
                 {
                     required:true,
+                    date:true
                 },
                 valid:(this.props.userData.dob? true:false),
-                touched:(this.props.userData.dob? true:false)
+                touched:(this.props.userData.dob? true:false),
+                errorMessage:'Please Enter a Valid date in DD/MM/YY format'
             },
             tenthMarks:{
                 elementType:'input',
@@ -112,7 +120,8 @@ class UserData extends Component {
                     required:true,
                 },
                 valid:(this.props.userData.tenthMarks? true:false),
-                touched:(this.props.userData.tenthMarks? true:false)
+                touched:(this.props.userData.tenthMarks? true:false),
+                errorMessage:'Please Enter a valid Value'
             },
             twelfthMarks:{
                 elementType:'input',
@@ -126,7 +135,8 @@ class UserData extends Component {
                     required:true,
                 },
                 valid:(this.props.userData.twelfthMarks? true:false),
-                touched:(this.props.userData.twelfthMarks? true:false)
+                touched:(this.props.userData.twelfthMarks? true:false),
+                errorMessage:'Please Enter a Valid Value'
             },
             diplomaPercentage:{
                 elementType:'input',
@@ -140,7 +150,8 @@ class UserData extends Component {
                     required:true,
                 },
                 valid:(this.props.userData.diplomaPercentage? true:false),
-                touched:(this.props.userData.diplomaPercentage? true:false)
+                touched:(this.props.userData.diplomaPercentage? true:false),
+                errorMessage:'Enter a Valid Value'
             },           
             cgpa:{
                 elementType:'input',
@@ -152,9 +163,11 @@ class UserData extends Component {
                 validation:
                 {
                     required:true,
+                    cgpa:true
                 },
                 valid:(this.props.userData.cgpa? true:false),
-                touched:(this.props.userData.cgpa? true:false)
+                touched:(this.props.userData.cgpa? true:false),
+                errorMessage:'Please Enter a Valid cgpa'
             },
            backlogs:{
                 elementType:'input',
@@ -168,7 +181,8 @@ class UserData extends Component {
                     required:true,
                 },
                 valid:(this.props.userData.backlogs? true:false),
-                touched:(this.props.userData.backlogs? true:false)
+                touched:(this.props.userData.backlogs? true:false),
+                errorMessage:'Enter 0 if None'
             },
            backlogsCleared:{
                 elementType:'input',
@@ -182,7 +196,8 @@ class UserData extends Component {
                     required:true,
                 },
                 valid:(this.props.userData.backlogsCleared? true:false),
-                touched:(this.props.userData.backlogsCleared? true:false)
+                touched:(this.props.userData.backlogsCleared? true:false),
+                errorMessage:'Enter 0 if None'
             },
             phoneNo:{
                 elementType:'input',
@@ -194,9 +209,11 @@ class UserData extends Component {
                 validation:
                 {
                     required:true,
+                    phone:true
                 },
                 valid:(this.props.userData.phone? true:false),
-                touched:(this.props.userData.phone? true:false)
+                touched:(this.props.userData.phone? true:false),
+                errorMessage:'Please enter a Valid Phone number'
             },
             address:{
                 elementType:'textarea',
@@ -210,7 +227,8 @@ class UserData extends Component {
                     required:true,
                 },
                 valid:(this.props.userData.address?true:false),
-                touched:(this.props.userData.address?true:false)
+                touched:(this.props.userData.address?true:false),
+                errorMessage:'Enter a Valid Address'
             },         
 
         },
@@ -246,6 +264,51 @@ class UserData extends Component {
             {
                 const pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
                 isValid = pattern.test(value) && isValid;
+            }
+            if(rules.date)
+            {
+                let ans = Date.parse(value)
+                if(isNaN(ans))
+                {
+                    isValid=false;
+                }else
+                {
+                    isValid=true;
+                }
+            }
+            if(rules.number)
+            {
+                console.log(value)
+                if(parseFloat(value)-parseInt(value)===0 && (parseInt(value)>=3 && parseInt(value)<=8))
+                {
+                    isValid=true;
+                }
+                else
+                {
+                    isValid=false;
+                }
+            }
+            if(rules.cgpa)
+            {
+                if(parseFloat(value)>=0 && parseFloat(value)<=10)
+                {
+                    isValid=true;
+                }
+                else
+                {
+                    isValid=false;
+                }
+            }
+            if(rules.phone)
+            {
+                if(value.length===10 && !isNaN(parseInt(value)))
+                {
+                    isValid=true;
+                }
+                else
+                {
+                    isValid=false;
+                }
             }
       
         return isValid
@@ -360,6 +423,7 @@ class UserData extends Component {
                     invalid = {!formElement.config.valid}
                     shouldValidate = {formElement.config.validation}
                     touched={formElement.config.touched}
+                    errorMessage={formElement.config.errorMessage}
                     changed={ (event)=> { this.inputChangedHandler(event,formElement.id) } }
                      />
                      
