@@ -24,7 +24,8 @@ class CompanyData extends Component {
                     required:true,
                 },
                 valid:false,
-                touched:false
+                touched:false,
+                errorMessage:'Name is required'
             },
             cutoff:{
                 elementType:'input',
@@ -36,9 +37,11 @@ class CompanyData extends Component {
                 validation:
                 {
                     required:true,
+                    number: true
                 },
                 valid:false,
-                touched:false
+                touched:false,
+                errorMessage:'Cutoff has to be number'
             },
             ctc: {
                 elementType:'input',
@@ -52,7 +55,8 @@ class CompanyData extends Component {
                     required:true,
                 },
                 valid:false,
-                touched:false
+                touched:false,
+                errorMessage:'Enter a valid CTC value'
 
             },
             internship:{
@@ -67,7 +71,8 @@ class CompanyData extends Component {
                     required:false,
                 },
                 valid:false,
-                touched:false
+                touched:false,
+                errorMessage:'Please enter a valid value'
             },
             position:{
                 elementType:'input',
@@ -81,7 +86,8 @@ class CompanyData extends Component {
                     required:false,
                 },
                 valid:false,
-                touched:false
+                touched:false,
+                errorMessage:'Please enter a valid value'
             },
             date:{
                 elementType:'input',
@@ -93,9 +99,11 @@ class CompanyData extends Component {
                 validation:
                 {
                     required:true,
+                    date:true
                 },
                 valid:false,
-                touched:false
+                touched:false,
+                errorMessage:'Please Enter a Valid Date in DD/MM/YY format'
             },
             jobLocation:{
                 elementType:'input',
@@ -109,7 +117,8 @@ class CompanyData extends Component {
                     required:true,
                 },
                 valid:false,
-                touched:false
+                touched:false,
+                errorMessage:'Error'
             },
             jobDescription:{
                 elementType:'input',
@@ -123,7 +132,8 @@ class CompanyData extends Component {
                     required:true,
                 },
                 valid:false,
-                touched:false
+                touched:false,
+                errorMessage:'Enter a valid Job Description'
             },
             additionalInfo:{
                 elementType:'textarea',
@@ -137,7 +147,8 @@ class CompanyData extends Component {
                     required:false,
                 },
                 valid:false,
-                touched:false
+                touched:false,
+                errorMessage:'Error'
             }
     },
        
@@ -167,6 +178,36 @@ class CompanyData extends Component {
             {
                 const pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
                 isValid = pattern.test(value) && isValid;
+            }
+            if(rules.number)
+            {
+                if(parseFloat(value)>0 && parseFloat(value)<=9.5)
+                {
+                    isValid = true
+                }
+                else
+                {
+                    isValid=false;
+                }
+            }
+            if(rules.date)
+            {
+                let ans = Date.parse(value)
+                if(isNaN(ans))
+                {
+                    isValid=false;
+                }else
+                {
+                    if(Date.now()>ans)
+                    {
+                        isValid=false
+                    }
+                    else
+                    {
+                        isValid=true;
+                    }
+                    
+                }
             }
       
         return isValid
@@ -259,6 +300,7 @@ class CompanyData extends Component {
                     invalid = {!formElement.config.valid}
                     shouldValidate = {formElement.config.validation}
                     touched={formElement.config.touched}
+                    errorMessage = {formElement.config.errorMessage}
                     changed={ (event)=> { this.inputChangedHandler(event,formElement.id) } }
                      />
                      

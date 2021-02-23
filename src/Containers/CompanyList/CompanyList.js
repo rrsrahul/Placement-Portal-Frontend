@@ -16,6 +16,7 @@ class CompanyList extends Component
         search:''
     }
     componentDidMount()
+    
     {
        this.props.onGetCompanies();
     }

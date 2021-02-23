@@ -36,3 +36,16 @@
     border: 1px solid red;
     background-color: rgb(243, 157, 148);
 }
+
+.my-notify-warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+
+.mynotifyerror {
+    color: #D8000C;
+    background-color: #FFD2D2;
+    display: flex;
+    align-content: center;
+    margin: auto;
+}

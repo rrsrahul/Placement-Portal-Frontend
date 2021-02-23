@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Welcome.module.css";
 import { useSelector } from "react-redux";
-import bmsLogo from "../../assets/images/bmsLogo.jpg";
+//import bmsLogo from "../../assets/images/bmsLogo.jpg";
 
 const Welcome = (props) => {
   let name = useSelector((state) => {

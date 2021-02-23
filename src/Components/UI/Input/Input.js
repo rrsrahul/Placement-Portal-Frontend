@@ -48,10 +48,20 @@ const input = (props)=>
             onChange={props.changed}/>
 
     }
+    let errorMessage = null;
+    if(props.invalid === true && props.shouldValidate && props.touched)
+    {
+        errorMessage = (<div className={classes.mynotifyerror}>
+            <p style={{margin:'auto'}}>
+                {props.errorMessage}
+            </p>
+        </div>)
+    }
     return (   
         <div className="form-group" >
             <label className={classes.label}>{props.label}</label>
-            {inputElement}          
+            {inputElement} 
+            {errorMessage}         
         </div>
     )
 }
