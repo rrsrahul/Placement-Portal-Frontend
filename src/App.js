@@ -56,8 +56,8 @@ function App(props) {
   let routes = (
     <Switch>
           <Route path='/auth' component={Auth}/>
-          <Route path='/' exact component={CompanyList}/>
-          <Redirect to='/'/>
+          <Route path='/companies' exact component={CompanyList}/>
+          <Redirect to='/auth'/>
         </Switch>
   );
 
@@ -76,7 +76,7 @@ function App(props) {
       <Route path='/company' component={CompanyInfo}/>
       <Route path='/logout' component={Logout}/>
       <Route path='/welcome' component={Welcome}/>
-      <Route path='/' exact component={CompanyList}/>
+      <Route path='/companies' exact component={CompanyList}/>
       </Switch>)
     }
     else{
@@ -86,7 +86,8 @@ function App(props) {
         <Route path='/company' component={CompanyInfo}/>
         <Route path='/user' component={UserData}/>
         <Route path='/logout' component={Logout}/>
-        <Route path='/' exact component={CompanyList}/>
+        <Route path='/welcome' component={Welcome}/>
+        <Route path='/companies' exact component={CompanyList}/>
         </Switch>
       )
 

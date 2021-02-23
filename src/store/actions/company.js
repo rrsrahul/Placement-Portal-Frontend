@@ -85,6 +85,7 @@ export const companyDelete = (company)=>{
         .then(res =>{
             console.log(company);
             dispatch(companyDeleteSuccess(company))
+            dispatch(getCompanies());
 
         })
         .catch(err=>{
