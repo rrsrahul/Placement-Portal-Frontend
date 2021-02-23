@@ -1,4 +1,39 @@
+.center{
+  margin:5% auto;
+  width: 90%;
+  background-color:snow;
+  background-image: url("../../assets/BMSCE\ Grey.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  box-sizing: border-box;
+  padding: 150px 55px 160px 55px;
+  border-radius: 15px;
+}
+
 .Welcome
 {
-    
+  color: rgba(0,50,100,0.6);
+  font-size: 340%;
+  text-shadow: 4px 2px 10px rgb(145, 165, 255), 4px 3px 2px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.info{
+  text-shadow: 2px 1px 3px #4e73b8af;
+  font-size: 180%;
+  color:#333;
+  text-align: center;
+}
+
+hr {
+  border:none;
+  height: 20px;
+ 	width: 90%;
+	height: 50px;
+	margin-top: 0;
+	border-bottom: 1px solid #1f1209;
+	box-shadow: 0 20px 20px -20px #333;
+  margin: -50px auto 10px; 
 }
