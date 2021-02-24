@@ -13,6 +13,13 @@ class Schedule extends Component {
 
 
   render() {
+    if(this.props.companies.length===0)
+    {
+      return (<div style={{width:'100%'}}>
+        <h1 style={{margin:'auto'}}>No companies have registered now</h1>
+      </div>)
+    }
+
     let comps = this.props.companies.map(company =>{
       let dateObj = new Date(company.date);
       let month = dateObj.getUTCMonth() + 1; //months from 1-12

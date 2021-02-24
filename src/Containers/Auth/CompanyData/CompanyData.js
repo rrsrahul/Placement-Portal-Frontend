@@ -192,22 +192,33 @@ class CompanyData extends Component {
             }
             if(rules.date)
             {
-                let ans = Date.parse(value)
-                if(isNaN(ans))
+
+                let date = value.split('/');
+                console.log(date,date.length)
+                if(date.length!==3)
                 {
                     isValid=false;
-                }else
+                }
+                else
                 {
-                    if(Date.now()>ans)
+                    let ans =new Date(date[2],date[1],date[0]);
+                    //console.log(ans)
+                    if(isNaN(ans))
                     {
                         isValid=false
                     }
                     else
                     {
-                        isValid=true;
+                        if(Date.now()>ans)
+                        {
+                            isValid=false
+                        }else
+                        {
+                            isValid=true;
+                        }
                     }
-                    
                 }
+        
             }
       
         return isValid
