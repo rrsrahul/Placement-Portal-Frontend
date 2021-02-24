@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "placementportal-5cbe8"
+    "default": "campusplacement-ad60c",
+    "bck": "placementportal-5cbe8",
+    "defualt": "campusplacement-ad60c"
   }
 }

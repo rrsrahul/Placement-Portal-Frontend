@@ -16,7 +16,7 @@ class Schedule extends Component {
     if(this.props.companies.length===0)
     {
       return (<div style={{width:'100%'}}>
-        <h1 style={{margin:'auto'}}>No companies have registered now</h1>
+        <h1 style={{margin:'auto', textAlign: 'center'}}>No companies hiring now</h1>
       </div>)
     }
 

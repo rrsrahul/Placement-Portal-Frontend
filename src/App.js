@@ -6,7 +6,6 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import CompanyList from './Containers/CompanyList/CompanyList'
 import Auth from './Containers/Auth/Auth'
 import Layout from './Containers/Layout/Layout';
-import { Redirect } from "react-router";
 import {Switch,Route} from 'react-router-dom';
 import {useDispatch,useSelector} from 'react-redux';
 import * as actions from './store/actions/index'
@@ -57,7 +56,7 @@ function App(props) {
     <Switch>
           <Route path='/auth' component={Auth}/>
           <Route path='/companies' exact component={CompanyList}/>
-          <Redirect to='/auth'/>
+          <Route path='/' exact component={Auth}/>
         </Switch>
   );
 
