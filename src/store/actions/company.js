@@ -2,7 +2,7 @@ import * as actionTypes from './actionTypes'
 import axiosI from 'axios'
 
 const axios = axiosI.create({
-    baseURL:'https://whispering-anchorage-84466.herokuapp.com/'
+    baseURL:'https://placement-potal.herokuapp.com/'
 })
 
 

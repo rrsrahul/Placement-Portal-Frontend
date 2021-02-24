@@ -370,7 +370,7 @@ class UserData extends Component {
 
 
 
-        axios.post('https://whispering-anchorage-84466.herokuapp.com/students/'+this.props.userId,formData)
+        axios.post('https://placement-potal.herokuapp.com/students/'+this.props.userId,formData)
         .then( res =>
         {
            console.log(res.data);
