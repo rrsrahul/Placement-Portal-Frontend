@@ -73,7 +73,7 @@ class CompanyInfo extends Component {
       {
           downloadExcel=(<a style={{display: "flex", justifyContent: "center", margin: "auto", marginBottom: "50px", maxWidth: "250px"}}
           className="btn btn-primary" rel="noopener noreferrer"
-           href={"localhost:8080/apply/company?name="+this.state.company.name+"&position="+this.state.company.position }
+           href={"https://placement-potal.herokuapp.com/apply/company?name="+this.state.company.name+"&position="+this.state.company.position }
            target="_blank">
            Download Applicants List
            </a>)
