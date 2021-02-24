@@ -33,7 +33,7 @@ function App(props) {
     dispatch(actions.authCheckState())
     if(t!=null)
     {
-      axios.get('https://whispering-anchorage-84466.herokuapp.com/apply/student/?userId='+userId)
+      axios.get('https://placement-potal.herokuapp.com/apply/student/?userId='+userId)
       .then(res =>
       {
          dispatch(actions.applyStart(res.data))

@@ -260,7 +260,7 @@ class CompanyData extends Component {
             additionalInformation:this.state.controls.additionalInfo.value
         }
 
-        axios.post('https://whispering-anchorage-84466.herokuapp.com/companies',compData)
+        axios.post('https://placement-potal.herokuapp.com/companies',compData)
         .then(res =>
         {
             console.log(res.data);
